@@ -27,7 +27,7 @@ function App() {
             if (user) {
                 setTelegramUser(user);
             } else {
-                console.warn("No user data available");
+                window.alert("No user data available");
             }
         }
     }, []);
@@ -47,7 +47,7 @@ function App() {
                         </button>
 
                         {/* Conditionally display username */}
-                        {showUsername && telegramUser && (
+                        {showUsername && (
                             <p>
                                 Welcome, {telegramUser.username || telegramUser.first_name}!
                             </p>

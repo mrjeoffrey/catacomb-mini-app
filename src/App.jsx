@@ -18,31 +18,41 @@ import { useEffect, useState } from 'react';
 const queryClient = new QueryClient();
 
 function App() {
-
     const [telegramUser, setTelegramUser] = useState(null);
+    const [showUsername, setShowUsername] = useState(false); // New state to control visibility
+
     useEffect(() => {
         if (window.Telegram?.WebApp) {
-          const user = window.Telegram.WebApp.initDataUnsafe?.user;
-    
-          if (user) {
-            setTelegramUser(user);
-          } else {
-            console.warn("No user data available");
-          }
+            const user = window.Telegram.WebApp.initDataUnsafe?.user;
+            if (user) {
+                setTelegramUser(user);
+            } else {
+                console.warn("No user data available");
+            }
         }
-      }, [window.Telegram]);
+    }, []);
+
+    const handleShowUsername = () => {
+        setShowUsername(true); // Show username when button is clicked
+    };
 
     return (
         <QueryClientProvider client={queryClient}>
             <TimerProvider initialSeconds={14}>
-            {telegramUser ? (
-        <p>
-          Welcome, {telegramUser.username || telegramUser.first_name}!
-        </p>
-      ) : (
-        <p>Loading user info...</p>
-      )}
                 <BrowserRouter>
+                    <div style={{ padding: '20px' }}>
+                        {/* Button to toggle username display */}
+                        <button onClick={handleShowUsername}>
+                            Show Telegram Username
+                        </button>
+
+                        {/* Conditionally display username */}
+                        {showUsername && telegramUser && (
+                            <p>
+                                Welcome, {telegramUser.username || telegramUser.first_name}!
+                            </p>
+                        )}
+                    </div>
                     <Routes>
                         <Route path="/" element={<Layout><Home /></Layout>} />
                         <Route path="/leaderboard" element={<Layout><Leaderboard /></Layout>} />

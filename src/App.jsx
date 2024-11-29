@@ -27,12 +27,13 @@ function App() {
             if (user) {
                 setTelegramUser(user);
             } else {
-                window.alert("No user data available");
+                window.Telegram.WebApp.showAlert('Hello world!');
             }
         }
     }, []);
 
     const handleShowUsername = () => {
+        window.Telegram.WebApp.showAlert('Hello world!');
         setShowUsername(true); // Show username when button is clicked
     };
 

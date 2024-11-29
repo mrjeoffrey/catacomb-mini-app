@@ -27,17 +27,14 @@ function App() {
             if (user) {
                 setTelegramUser(user);
             } else {
-                window.Telegram.WebApp.showAlert('Hello world!');
+                window.alert("No user data available");
             }
         }
     }, []);
 
     const handleShowUsername = () => {
-        window.Telegram.WebApp.showAlert('Hello world!');
         setShowUsername(true); // Show username when button is clicked
     };
-
-    console.log(window.Telegram, "_++_+_+_+_")
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -46,7 +43,7 @@ function App() {
                     <div style={{ padding: '20px' }}>
                         {/* Button to toggle username display */}
                         <button onClick={handleShowUsername}>
-                            Show Telegram Username {window.Telegram}
+                            Show Telegram Username
                         </button>
 
                         {/* Conditionally display username */}

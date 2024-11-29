@@ -37,6 +37,8 @@ function App() {
         setShowUsername(true); // Show username when button is clicked
     };
 
+    console.log(window.Telegram, "_++_+_+_+_")
+
     return (
         <QueryClientProvider client={queryClient}>
             <TimerProvider initialSeconds={14}>
@@ -44,7 +46,7 @@ function App() {
                     <div style={{ padding: '20px' }}>
                         {/* Button to toggle username display */}
                         <button onClick={handleShowUsername}>
-                            Show Telegram Username {window.Telegram.WebApp.initDataUnsafe}
+                            Show Telegram Username {window.Telegram}
                         </button>
 
                         {/* Conditionally display username */}

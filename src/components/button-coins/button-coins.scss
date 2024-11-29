@@ -1,0 +1,30 @@
+/* ------------------------------------------------------------ *\
+	Button coins
+\* ------------------------------------------------------------ */
+
+.button-coins {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: .2rem .4rem;
+	height: 3.7rem;
+	border: 3px solid var(--c-brown);
+	border-radius: 1rem; 
+	font-weight: 600;
+	background: linear-gradient(0deg, rgba(99,67,59,1) 0%, rgba(113,75,60,1) 29%, rgba(150,96,63,1) 84%, rgba(163,104,65,1) 97%);
+	flex-shrink: 0;
+
+	span {
+		background-color: rgba(0,0,0, 50%);
+		border-radius: .4rem;
+		padding-inline: 3.7rem 0.4rem;
+		margin-inline: .5rem;
+	}
+
+	.button__icon-left {
+		position: absolute;
+		top: 50%;
+		left: -1.5rem;
+		transform: translateY(-50%);
+	}
+}

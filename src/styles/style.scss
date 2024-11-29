@@ -1,0 +1,33 @@
+/* ------------------------------------------------------------ *\
+	Generic
+\* ------------------------------------------------------------ */
+
+@import 'generic/variables';
+@import 'generic/functions';
+@import 'generic/mixins';
+@import 'generic/reset';
+@import 'generic/fonts';
+@import 'generic/base';
+@import 'generic/helpers';
+
+/* ------------------------------------------------------------ *\
+	Components
+\* ------------------------------------------------------------ */
+@import '@/components/button-coins/button-coins.scss';
+@import '@/components/shell/shell.scss';
+@import '@/components/section/section.scss';
+@import '@/components/box/box.scss';
+@import '@/components/nav/nav.scss';
+@import '@/components/player-info/player-info.scss';
+@import '@/components/header/header.scss';
+@import '@/components/wrapper/wrapper.scss';
+@import '@/components/progress/progress.scss';
+@import '@/components/chest/chest.scss';
+@import '@/components/footer/footer.scss';
+@import '@/components/timer/timer.scss';
+@import '@/components/box-leaderboard/box-leaderboard.scss';
+@import '@/components/section-main/section-main.scss';
+@import '@/components/box-task/box-task.scss';
+@import '@/components/box-share/box-share.scss';
+@import '@/components/list-allies/list-allies.scss';
+@import '@/components/boxes-list/boxes-list.scss';

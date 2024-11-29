@@ -1,0 +1,25 @@
+/* ------------------------------------------------------------ *\
+	Section
+\* ------------------------------------------------------------ */
+
+.section {
+	isolation: isolate;
+	padding-bottom: 3rem;
+
+	@include breakpoint-down(mobile-small) {
+		padding-top: 1rem;		
+	}
+
+	.section__content {
+		text-align: center;
+	}
+
+	.section__decoration {
+		margin-top: -.8rem;
+		text-align: center;
+
+		@include breakpoint-down(mobile-small) {
+			margin-top: 0;		
+		}
+	}
+}

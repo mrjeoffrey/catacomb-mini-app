@@ -1,0 +1,67 @@
+/* ------------------------------------------------------------ *\
+	Nav
+\* ------------------------------------------------------------ */
+
+.nav {
+	text-align: center;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 2.6rem;
+
+	ul {
+		list-style: none;
+		display: flex;
+		align-items: flex-start;
+		gap: 2rem;
+
+		@include breakpoint-down(mobile-small) {
+			gap: 1rem;		
+		}
+	}
+
+	a {
+		display: block;
+		text-decoration: none;
+	}
+
+	.nav__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 8rem;
+		height: 8rem;
+		border-radius: 2rem;
+		border: 2px solid var(--c-black);
+		background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(42,42,42,1) 100%);
+		position: relative;
+		margin-bottom: 1.4rem;
+		margin-inline: auto;
+
+		@include breakpoint-down(mobile-small) {
+			width: 6.4rem;
+			height: 6.4rem;	
+			padding: .6rem;	
+		}
+	}
+
+	.nav__icon-available {
+		position: absolute;
+		top: -1rem;
+		right: -1rem;
+		animation: wiggle 5.6s linear infinite;
+	}
+
+	.nav__back {
+		padding-top: 1.4rem;
+
+		@include breakpoint-down(mobile-small) {
+			padding-top: 1rem;	
+			max-width: 3rem;	
+		}
+	}
+
+	span {
+		display: block;
+	}
+}

@@ -1,0 +1,12 @@
+ [
+    { "username": "robnnguyen9", "xp": 103060, "level": 2, "coins": 100000 },
+    { "username": "player2", "xp": 101000, "level": 2, "coins": 98000 },
+    { "username": "player5", "xp": 95600, "level": 2, "coins": 92000 },
+    { "username": "player6", "xp": 97400, "level": 1, "coins": 90000 },
+    { "username": "player7", "xp": 93400, "level": 1, "coins": 88000 },
+    { "username": "player9", "xp": 95400, "level": 1, "coins": 84000 },
+    { "username": "player3", "xp": 94000, "level": 2, "coins": 96000 },
+    { "username": "player4", "xp": 96000, "level": 2, "coins": 94000 },
+    { "username": "player8", "xp": 94000, "level": 1, "coins": 86000 },
+    { "username": "player10", "xp": 89000, "level": 1, "coins": 82000 }
+  ]

@@ -1,0 +1,143 @@
+/* ------------------------------------------------------------ *\
+	Chest
+\* ------------------------------------------------------------ */
+
+.chest {
+	position: relative;
+
+	.chest__main {
+		position: relative;
+		pointer-events: none;
+		max-width: 23rem;
+		margin: 0 auto;
+		cursor: pointer;
+		padding-bottom: 2.5rem;
+	}
+
+	.chest__image {
+		width: 23rem;
+		height: 20rem; 
+		background: url('/images/temp/chest-animation.png') no-repeat; 
+		background-size: calc(23rem * 5) 24rem;
+		overflow: hidden;
+		transition: opacity .4s;
+		opacity: .5;
+		margin-top: -2.5rem;
+	}
+
+	.chest__loader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.chest__loader img {
+		animation: spin 2.4s ease-in-out infinite;
+	}
+
+	.chest__rewards {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transition: opacity .4s;
+		opacity: 0;
+		will-change: transform, opacity;
+	}
+
+	.chest__rewards-animation {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 23.5rem;
+		height: 23.5rem;
+		will-change: transform, opacity;
+		display: block;
+	}
+
+	.chest__rewards-row {
+		display: flex;	
+		justify-content: center;
+		gap: .4rem;	
+	}
+
+	.chest__pointer {
+		position: absolute;
+		top: 58%;
+		right: -3rem;
+		animation: point 3s linear infinite;
+		opacity: 0;
+		transition: opacity .4s;
+	}
+}
+
+@keyframes rewardZoom {
+    0% {
+        transform: scale(0.7);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes sprite-animation {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -880px 0; 
+    }
+}
+
+/* timer finished */
+
+.timer-finished .chest {
+	.chest__main {
+		pointer-events: auto;
+	}
+
+	.chest__image {
+		opacity: 1;
+	}
+
+	.chest__pointer {
+		opacity: 1;
+	}
+}
+
+/* chest is open */
+
+.chest.is-open {
+	.chest__main {
+		pointer-events: none;
+	}
+
+	.chest__image {
+		animation: sprite-animation .6s .2s steps(4) forwards;
+	}
+
+	.chest__pointer {
+		opacity: 0;
+	}
+}
+
+/* chest has reward */
+
+.chest.has-reward {
+	.chest__image {
+		opacity: 0;		
+	}
+
+	.chest__rewards {
+		opacity: 1;
+	}
+
+	.chest__rewards-row {
+		animation: rewardZoom 1.4s ease-in-out;
+	}
+}

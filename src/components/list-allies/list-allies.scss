@@ -1,0 +1,43 @@
+/* ------------------------------------------------------------ *\
+	List allies
+\* ------------------------------------------------------------ */
+
+.list-allies {
+	font-size: 1.4rem;
+	padding-top: 1rem;
+
+	h5 {
+		margin-bottom: 1rem;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	li {
+		display: flex;
+		border-bottom: 2px dashed rgba(255,255,255, 0.2);
+		padding-block: 1rem;
+		gap: 1rem;
+	}
+
+	li:last-child {
+		border-bottom: 0;
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+
+	p:first-child {
+		flex: 0 0 38%;
+	}
+
+	p:last-child {
+		margin-left: auto;
+	}
+
+	img {
+		margin-right: 0.4rem;
+	}
+}

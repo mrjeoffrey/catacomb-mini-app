@@ -1,0 +1,28 @@
+/* ------------------------------------------------------------ *\
+	Box
+\* ------------------------------------------------------------ */
+
+.box {
+	background-color: var(--c-dark);
+	border-radius: 2rem;
+	padding: 1.8rem 2.3rem;
+	font-size: 1.9rem;
+	color: var(--c-gray);
+
+	.box__head {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		margin-bottom: 2.4rem;
+	}
+
+	.box__title {
+		letter-spacing: -0.02em;
+		font-weight: 500;
+		font-size: 1.9rem;
+	}
+
+	p:not(:last-child) {
+		margin-bottom: 2.4rem;
+	}
+}

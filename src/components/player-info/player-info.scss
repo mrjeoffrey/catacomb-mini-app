@@ -1,0 +1,66 @@
+/* ------------------------------------------------------------ *\
+	Player info
+\* ------------------------------------------------------------ */
+
+.player-info {
+	display: flex;	
+	align-items: flex-end;
+	gap: 2.7rem;
+
+	@include breakpoint-down(mobile-small) {
+		gap: 1rem;		
+	}
+
+	.player__aside {
+		position: relative;
+		width: 8.8rem;
+		height: 8.8rem;
+
+		@include breakpoint-down(mobile-small) {
+			width: 7rem;
+			height: 7rem;
+		}
+	}
+
+	.player__aside span {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-weight: 900;
+	}
+
+	.player__status {
+		margin-left: .8rem;
+		animation: blink 1.6s linear infinite;
+	}
+
+	.player__content span {
+		display: flex;
+		align-items: center;
+	}
+
+	.player__xp {
+		position: absolute;
+		bottom: 1.2rem;
+		right: -.5rem;
+		animation: wiggle 5.6s linear infinite;
+
+		@include breakpoint-down(mobile-small) {
+			max-width: 3.5rem;
+			bottom: 0.5rem;
+		}
+	}
+
+	.player__content {
+		padding-bottom: 1.4rem;
+
+		@include breakpoint-down(mobile-small) {
+			padding-bottom: 0;		
+		}
+	}
+
+	p:not(:last-child) {
+		margin-bottom: .3rem;
+	}
+}

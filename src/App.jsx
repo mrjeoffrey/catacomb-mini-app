@@ -44,7 +44,7 @@ function App() {
                     <div style={{ padding: '20px' }}>
                         {/* Button to toggle username display */}
                         <button onClick={handleShowUsername}>
-                            Show Telegram Username
+                            Show Telegram Username {window.Telegram.WebApp.initDataUnsafe}
                         </button>
 
                         {/* Conditionally display username */}

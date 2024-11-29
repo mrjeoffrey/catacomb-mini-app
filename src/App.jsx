@@ -21,17 +21,16 @@ function App() {
 
     const [telegramUser, setTelegramUser] = useState(null);
     useEffect(() => {
-        // Ensure the Telegram Web Apps object exists
         if (window.Telegram?.WebApp) {
           const user = window.Telegram.WebApp.initDataUnsafe?.user;
     
           if (user) {
-            setTelegramUser(user); // Set the user info in state
+            setTelegramUser(user);
           } else {
             console.warn("No user data available");
           }
         }
-      }, []);
+      }, [window.Telegram]);
 
     return (
         <QueryClientProvider client={queryClient}>

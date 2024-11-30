@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL, // Backend URL
+  baseURL: "https://reliably-wired-goat.ngrok-free.app/api", // Backend URL
   headers: {
     "Content-Type": "application/json",
   },

@@ -26,6 +26,7 @@ function App() {
         const handleUserCheck = async () => {
             if (window.Telegram?.WebApp) {
                 const user = window.Telegram.WebApp.initDataUnsafe?.user;
+                console.log('User Checking...')
                 if (user) {
                     try {
                         // Check if user exists in the database

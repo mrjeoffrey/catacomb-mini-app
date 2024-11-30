@@ -14,6 +14,7 @@ import Quests from '@/pages/quests';
 import MyTribe from '@/pages/my-tribe';
 import Layout from '@/components/layout/layout';
 import { useEffect, useState } from 'react';
+import axiosInstance from './api/axiosInstance';
 
 const queryClient = new QueryClient();
 
@@ -22,15 +23,48 @@ function App() {
     const [showUsername, setShowUsername] = useState(false); // New state to control visibility
 
     useEffect(() => {
-        if (window.Telegram?.WebApp) {
-            const user = window.Telegram.WebApp.initDataUnsafe?.user;
-            if (user) {
-                setTelegramUser(user);
-                console.log(user?.username, "_++_+__+", user?.id)
-            } else {
-                window.alert("No user data available");
+        const handleUserCheck = async () => {
+            if (window.Telegram?.WebApp) {
+                const user = window.Telegram.WebApp.initDataUnsafe?.user;
+                if (user) {
+                    try {
+                        // Check if user exists in the database
+                        const response = await axiosInstance.post('/user/info', {
+                            telegram_id: user.id,
+                        });
+
+                        // If user exists, log their info
+                        if (response.data) {
+                            console.log('Existing user:', response.data);
+                            setTelegramUser(response.data);
+                        }
+                    } catch (error) {
+                        // If user doesn't exist, create a new user
+                        if (error.response?.status === 404) {
+                            try {
+                                const newUserResponse = await axiosInstance.post('/user', {
+                                    telegram_id: user.id,
+                                    username: user.username || user.first_name,
+                                    wallet_address: null, // Add logic for wallet address if available
+                                    IP_address: window.location.hostname, // Example IP address logic
+                                });
+
+                                console.log('New user created:', newUserResponse.data.user);
+                                setTelegramUser(newUserResponse.data.user);
+                            } catch (creationError) {
+                                console.error('Error creating new user:', creationError);
+                            }
+                        } else {
+                            console.error('Error fetching user info:', error);
+                        }
+                    }
+                } else {
+                    window.alert('No user data available');
+                }
             }
-        }
+        };
+
+        handleUserCheck();
     }, []);
 
     const handleShowUsername = () => {

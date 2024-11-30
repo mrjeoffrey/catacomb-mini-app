@@ -26,7 +26,7 @@ function App() {
             const user = window.Telegram.WebApp.initDataUnsafe?.user;
             if (user) {
                 setTelegramUser(user);
-                console.log(window.Telegram.WebApp.initDataUnsafe, "_++_+__+")
+                console.log(user?.username, "_++_+__+", user?.id)
             } else {
                 window.alert("No user data available");
             }

@@ -2,8 +2,8 @@
  * External dependencies.
  */
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { TimerProvider } from '@/contexts/timer-context'; 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { TimerProvider } from '@/contexts/timer-context';
+
 
 /**
  * Internal dependencies.
@@ -15,13 +15,13 @@ import MyTribe from '@/pages/my-tribe';
 import Layout from '@/components/layout/layout';
 import { useEffect, useState } from 'react';
 import axiosInstance from './api/axiosInstance';
+import { useUserInfo } from './queries/useUserInfo';
+import { LoadingPanel } from '@/components/loading/loading';
 
-const queryClient = new QueryClient();
+
 
 function App() {
-    const [telegramUser, setTelegramUser] = useState(null);
-    const [showUsername, setShowUsername] = useState(false); // New state to control visibility
-
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         const handleUserCheck = async () => {
             if (window.Telegram?.WebApp) {
@@ -31,27 +31,28 @@ function App() {
                     try {
                         // Check if user exists in the database
                         const response = await axiosInstance.post('/user/info', {
-                            telegram_id: user.id,
+                            telegram_id: "6430530130"//user.id,
                         });
-
+                        
                         // If user exists, log their info
                         if (response.data) {
+                            setLoading(false)
                             console.log('Existing user:', response.data);
-                            setTelegramUser(response.data);
                         }
                     } catch (error) {
                         // If user doesn't exist, create a new user
                         if (error.response?.status === 404) {
                             try {
                                 const newUserResponse = await axiosInstance.post('/user', {
-                                    telegram_id: user.id,
+                                    telegram_id: "6430530130",//user.id,
                                     username: user.username || user.first_name,
                                     wallet_address: null, // Add logic for wallet address if available
                                     IP_address: window.location.hostname, // Example IP address logic
                                 });
 
                                 console.log('New user created:', newUserResponse.data.user);
-                                setTelegramUser(newUserResponse.data.user);
+                                setLoading(false)
+
                             } catch (creationError) {
                                 console.error('Error creating new user:', creationError);
                             }
@@ -62,42 +63,31 @@ function App() {
                 } else {
                     window.alert('No user data available');
                 }
+                ;
             }
         };
-
         handleUserCheck();
     }, []);
 
-    const handleShowUsername = () => {
-        setShowUsername(true); // Show username when button is clicked
-    };
+    
+    const { data: userInfo } = useUserInfo("6430530130")//window.Telegram.WebApp.initDataUnsafe?.user?.id);
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <TimerProvider initialSeconds={14}>
+       
+            <TimerProvider initialSeconds={userInfo?.seconds}>
                 <BrowserRouter>
-                    <div style={{ padding: '20px' }}>
-                        {/* Button to toggle username display */}
-                        <button onClick={handleShowUsername}>
-                            Show Telegram Username
-                        </button>
-
-                        {/* Conditionally display username */}
-                        {showUsername && (
-                            <p>
-                                Welcome, {telegramUser.username || telegramUser.first_name}!
-                            </p>
-                        )}
-                    </div>
+                    {loading?<LoadingPanel/>:
+                    <Layout userInfo={userInfo}>
                     <Routes>
-                        <Route path="/" element={<Layout><Home /></Layout>} />
-                        <Route path="/leaderboard" element={<Layout><Leaderboard /></Layout>} />
-                        <Route path="/quests" element={<Layout><Quests /></Layout>} />
-                        <Route path="/my-tribe" element={<Layout><MyTribe /></Layout>} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/leaderboard" element={<Leaderboard />} />
+                        <Route path="/quests" element={<Quests />} />
+                        <Route path="/my-tribe" element={<MyTribe />} />
                     </Routes>
+                    </Layout>
+}
                 </BrowserRouter>
             </TimerProvider>
-        </QueryClientProvider>
     );
 }
 

@@ -10,7 +10,7 @@ import Shell from '@/components/shell/shell';
 import ButtonCoins from '@/components/button-coins/button-coins';
 import PlayerInfo from '@/components/player-info/player-info';
 
-const Header = () => {
+const Header = ({userInfo}) => {
 	const location = useLocation();
 	const isHomePage = location.pathname === "/"; 
 
@@ -22,11 +22,11 @@ const Header = () => {
 						<img src="/images/temp/logo@2x.png" width="153" height="38" alt="Logo" />						
 					</Link>
 
-					<ButtonCoins />
+					<ButtonCoins userInfo={userInfo} />
 				</div>
 
 				<div className="header__info">
-					<PlayerInfo />
+					<PlayerInfo userInfo={userInfo} />
 
 					{!isHomePage && (
 						<Link to="/" className="header__back">

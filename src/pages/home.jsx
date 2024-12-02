@@ -15,7 +15,8 @@ import Chest from '@/components/chest/chest';
 
 const Home = () => {
     const { isTimerFinished } = useContext(TimerContext);
-
+    
+   
     return (
         <Section isTimerFinished={isTimerFinished}>
             <Shell>

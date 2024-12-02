@@ -5,11 +5,12 @@ import Wrapper from '@/components/wrapper/wrapper';
 import Header from '@/components/header/header';
 import Footer from '@/components/footer/footer';
 
-const Layout = ({ children }) => {
+const Layout = (data) => {
+   
     return (
         <Wrapper>
-            <Header />
-                {children}
+            <Header userInfo={data?.userInfo}/>
+                {data?.children}
             <Footer />
         </Wrapper>
     );

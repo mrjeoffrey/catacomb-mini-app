@@ -5,7 +5,7 @@ import { createContext, useState, useRef, useEffect, useCallback } from "react";
 
 const TimerContext = createContext();
 
-const TimerProvider = ({ children, initialSeconds = 40 }) => {
+const TimerProvider = ({ children, initialSeconds }) => {
     const [timeRemaining, setTimeRemaining] = useState(initialSeconds);
     const [isTimerFinished, setIsTimerFinished] = useState(false);
 

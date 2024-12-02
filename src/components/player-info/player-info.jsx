@@ -1,25 +1,25 @@
-const PlayerInfo = () => {
+const PlayerInfo = ({userInfo}) => {
+    
+    console.log(userInfo, "9090090090")
     return (
         <div className="player-info">
             <div className="player__aside">
                 <img src="/images/svg/ico-level.svg" width="88" height="80" alt="" />
 
-                <span className="player__level">LV2</span>
+                <span className="player__level">LV{userInfo?.level}</span>
 
                 <button className="player__xp">
                     <img  src="/images/svg/ico-xp.svg" width="45" height="22" alt="" />
                 </button>
             </div>
-
             <div className="player__content">
 				<p className="text-extrabold">Player
-					<span className="text-medium">@robnguyen9
-
+					<span className="text-medium">@{userInfo?.username}
                     	<img className="player__status" src="/images/svg/ico-dot.svg" width="10" height="10" alt="" />
 					</span>
 				</p>
 
-                <p className="text-xxs text-gray-100">103060 XP / 45670 XP #2356</p>
+                <p className="text-xxs text-gray-100">{userInfo?.xp} XP / {userInfo?.season_xp} XP #{userInfo?.rank}</p>
             </div>
         </div>
     );

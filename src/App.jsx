@@ -31,7 +31,7 @@ function App() {
                     try {
                         // Check if user exists in the database
                         const response = await axiosInstance.post('/user/info', {
-                            telegram_id: "6430530130"//user.id,
+                            telegram_id: user.id//6430530130,
                         });
                         
                         // If user exists, log their info
@@ -44,7 +44,7 @@ function App() {
                         if (error.response?.status === 404) {
                             try {
                                 const newUserResponse = await axiosInstance.post('/user', {
-                                    telegram_id: "6430530130",//user.id,
+                                    telegram_id: user.id,
                                     username: user.username || user.first_name,
                                     wallet_address: null, // Add logic for wallet address if available
                                     IP_address: window.location.hostname, // Example IP address logic
@@ -70,16 +70,16 @@ function App() {
     }, []);
 
     
-    const { data: userInfo } = useUserInfo("6430530130")//window.Telegram.WebApp.initDataUnsafe?.user?.id);
+    const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id);
 
     return (
-       
-            <TimerProvider initialSeconds={userInfo?.seconds}>
+            userInfo?
+            <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds}>
                 <BrowserRouter>
                     {loading?<LoadingPanel/>:
                     <Layout userInfo={userInfo}>
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Home refetch={refetch}/>} />
                         <Route path="/leaderboard" element={<Leaderboard />} />
                         <Route path="/quests" element={<Quests />} />
                         <Route path="/my-tribe" element={<MyTribe />} />
@@ -87,7 +87,7 @@ function App() {
                     </Layout>
 }
                 </BrowserRouter>
-            </TimerProvider>
+            </TimerProvider>:<LoadingPanel/>
     );
 }
 

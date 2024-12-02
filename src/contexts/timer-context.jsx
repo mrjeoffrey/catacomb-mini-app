@@ -1,79 +1,46 @@
-/**
- * External dependencies.
- */
-import { createContext, useState, useRef, useEffect, useCallback } from "react";
+import { createContext, useEffect, useState } from 'react';
 
 const TimerContext = createContext();
 
-const TimerProvider = ({ children, initialSeconds }) => {
-    const [timeRemaining, setTimeRemaining] = useState(initialSeconds);
-    const [isTimerFinished, setIsTimerFinished] = useState(false);
+export const TimerProvider = ({ initialSeconds, time_remaining, children }) => {
+  const [timeRemaining, setTimeRemaining] = useState(time_remaining === undefined ? initialSeconds: time_remaining);
+  const [isTimerFinished, setIsTimerFinished] = useState(false);
 
-    const lastTimeRef = useRef(Date.now());
-    const intervalRef = useRef(null);
+  // Reset Timer Function
+  const resetTimer = () => {
+    setTimeRemaining(initialSeconds); // Reset to initialSeconds
+    setIsTimerFinished(false);
+  };
 
-    const resetTimer = useCallback(() => {
-        if (intervalRef.current) {
-            cancelAnimationFrame(intervalRef.current);
-        }
-        
-        setTimeRemaining(initialSeconds);
-        setIsTimerFinished(false);
-        
-        setTimeout(() => {
-            lastTimeRef.current = Date.now();
-            startTimer();
-        }, 1000);
-    });
+  // Timer Logic
+  useEffect(() => {
+    if (timeRemaining > 0) {
+      const timer = setInterval(() => {
+        setTimeRemaining((prev) => prev - 1);
+      }, 1000);
 
-    const startTimer = () => {
-        const updateTimer = () => {
-            const currentTime = Date.now();
-            const deltaTime = currentTime - lastTimeRef.current;
+      return () => clearInterval(timer); // Cleanup interval
+    }
 
-            if (deltaTime >= 1000) {
-                lastTimeRef.current += 1000;
-                
-                setTimeRemaining((prevTimer) => {
-                    if (prevTimer > 1) {
-                        return prevTimer - 1;
-                    }
+    if (timeRemaining <= 0) {
+      setIsTimerFinished(true);
+    }
+  }, [timeRemaining, isTimerFinished]); // Depend on the correct states
 
-                    setIsTimerFinished(true);
-                    cancelAnimationFrame(intervalRef.current);
-                    return 0;
-                });
-            }
-            intervalRef.current = requestAnimationFrame(updateTimer);
-        };
-
-        intervalRef.current = requestAnimationFrame(updateTimer);
-    };
-
-    useEffect(() => {
-        startTimer();
-
-        return () => {
-            if (intervalRef.current) {
-                cancelAnimationFrame(intervalRef.current);
-            }
-        };
-    }, []);
-
-    return (
-        <TimerContext.Provider
-            value={{
-                timeRemaining,
-                setTimeRemaining,
-                initialSeconds,
-                isTimerFinished,
-                setIsTimerFinished,
-                resetTimer,
-            }}
-        >
-            {children}
-        </TimerContext.Provider>
-    );
+  return (
+    <TimerContext.Provider
+      value={{
+        timeRemaining,
+        setTimeRemaining,
+        initialSeconds,
+        isTimerFinished,
+        setIsTimerFinished,
+        resetTimer,
+      }}
+    >
+      {children}
+    </TimerContext.Provider>
+  );
 };
 
-export { TimerContext, TimerProvider };
+export { TimerContext };

@@ -1,6 +1,4 @@
 const PlayerInfo = ({userInfo}) => {
-    
-    console.log(userInfo, "9090090090")
     return (
         <div className="player-info">
             <div className="player__aside">
@@ -19,7 +17,7 @@ const PlayerInfo = ({userInfo}) => {
 					</span>
 				</p>
 
-                <p className="text-xxs text-gray-100">{userInfo?.xp} XP / {userInfo?.season_xp} XP #{userInfo?.rank}</p>
+                <p className="text-xxs text-gray-100">{userInfo?.xp} XP / {userInfo?.season_xp} XP #{userInfo?.rank + 1}</p>
             </div>
         </div>
     );

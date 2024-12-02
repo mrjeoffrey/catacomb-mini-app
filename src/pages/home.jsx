@@ -13,10 +13,9 @@ import Timer from '@/components/timer/timer';
 import Progress from '@/components/progress/progress';
 import Chest from '@/components/chest/chest';
 
-const Home = () => {
+const Home = ({refetch}) => {
     const { isTimerFinished } = useContext(TimerContext);
     
-   
     return (
         <Section isTimerFinished={isTimerFinished}>
             <Shell>
@@ -25,7 +24,7 @@ const Home = () => {
                 </Section.Decoration>
 
                 <Section.Content>
-                    <Chest />
+                    <Chest refetch={refetch} />
 
                     <Progress />
 

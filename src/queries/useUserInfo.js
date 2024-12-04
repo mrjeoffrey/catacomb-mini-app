@@ -13,8 +13,10 @@ export const useUserInfo = (telegramId) => {
   return useQuery({
     queryKey: ["userInfo", telegramId],
     queryFn: async () => {
-      const response = await fetchUserInfo(telegramId);
-      return response;
+      if (telegramId) {
+        const response = await fetchUserInfo(telegramId);
+        return response;
+      }
     },
     gcTime: 20000,
     enabled: !!telegramId,

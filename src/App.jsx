@@ -41,7 +41,7 @@ function App() {
                             console.log('Existing user:', response.data);
                         }
                     } catch (error) {
-                        console.log(error.response, "error.response")
+                        console.log(error, "error.response")
                         // If user doesn't exist, create a new user
                         if (error.response?.status === 404) {
                             try {

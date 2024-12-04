@@ -72,24 +72,10 @@ function App() {
     }, []);
 
     
-    const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id);
+    // const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id);
 
     return (
-            userInfo?
-            <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds}>
-                <BrowserRouter>
-                    {loading?<LoadingPanel/>:
-                    <Layout userInfo={userInfo}>
-                    <Routes>
-                        <Route path="/" element={<Home refetch={refetch}/>} />
-                        <Route path="/leaderboard" element={<Leaderboard />} />
-                        <Route path="/quests" element={<Quests />} />
-                        <Route path="/my-tribe" element={<MyTribe />} />
-                    </Routes>
-                    </Layout>
-}
-                </BrowserRouter>
-            </TimerProvider>:<LoadingPanel/>
+           <></>
     );
 }
 

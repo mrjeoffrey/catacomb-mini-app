@@ -4,7 +4,7 @@ const BoxRow = ({ player, rank }) => (
             {rank === 0 ? (
                 <img src="/images/svg/ico-top1.svg" width="43" height="43" alt="" />
             ) : (
-                <span className={rank <= 2 ? 'text-white' : ''}>{rank + 1}</span>
+                <span className={rank <= 2 ? 'text-white' : ''}>{rank}</span>
             )}
         </div>
 

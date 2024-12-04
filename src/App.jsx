@@ -33,6 +33,7 @@ function App() {
                         const response = await axiosInstance.post('/user/info', {
                             telegram_id: user.id//6430530130,
                         });
+                        console.log(response, "response")
                         
                         // If user exists, log their info
                         if (response.data) {
@@ -40,6 +41,7 @@ function App() {
                             console.log('Existing user:', response.data);
                         }
                     } catch (error) {
+                        console.log(error.response, "error.response")
                         // If user doesn't exist, create a new user
                         if (error.response?.status === 404) {
                             try {

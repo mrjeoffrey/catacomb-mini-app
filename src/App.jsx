@@ -30,7 +30,7 @@ function App() {
                     try {
                         // Check if user exists in the database
                         const response = await axiosInstance.post('/user/info', {
-                            telegram_id: 6430530130//user.id//6430530130,
+                            telegram_id: user.id//6430530130,
                         });
                         console.log(response, "response")
                         
@@ -45,10 +45,11 @@ function App() {
                         if (error.response?.status === 404) {
                             try {
                                 const newUserResponse = await axiosInstance.post('/user', {
-                                    telegram_id: 6430530130,//user.id,
+                                    telegram_id: user.id,//6430530130,//user.id,
                                     username: user.username || user.first_name,
                                     wallet_address: null, // Add logic for wallet address if available
                                     IP_address: window.location.hostname, // Example IP address logic
+                                    referral_code: window.Telegram.WebApp.initDataUnsafe?.start_param || null
                                 });
 
                                 console.log('New user created:', newUserResponse.data.user);
@@ -71,7 +72,7 @@ function App() {
     }, []);
 
     
-    const { data: userInfo, refetch } = useUserInfo(6430530130)//window.Telegram.WebApp.initDataUnsafe?.user?.id);
+    const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id)//6430530130)//);
     console.log(window.Telegram.WebApp.initDataUnsafe.start_param, "refferal")
     return (
             userInfo?
@@ -81,7 +82,6 @@ function App() {
                     <Layout userInfo={userInfo}>
                     <Routes>
                         <Route path="/" element={<Home refetch={refetch}/>} />
-                        {/* <Route path="/referred_by/:referred_by" element={<Home refetch={refetch}/>} /> */}
                         <Route path="/leaderboard" element={<Leaderboard />} />
                         <Route path="/quests" element={<Quests />} />
                         <Route path="/my-tribe" element={<MyTribe />} />

@@ -84,7 +84,7 @@ function App() {
                         <Route path="/" element={<Home refetch={refetch}/>} />
                         <Route path="/leaderboard" element={<Leaderboard />} />
                         <Route path="/quests" element={<Quests />} />
-                        <Route path="/my-tribe" element={<MyTribe />} />
+                        <Route path="/my-tribe" element={<MyTribe userInfo={userInfo} />} />
                     </Routes>
                     </Layout>
 }

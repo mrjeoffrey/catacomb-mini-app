@@ -1,7 +1,16 @@
-const BoxShare = ({ code }) => {
-	const copyToClipboard = () => {
-		navigator.clipboard.writeText(code);
-	};
+import { useState } from 'react';
+
+const BoxShare = ({ code, userInfo }) => {
+    const [copied, setCopied] = useState(false);
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(`https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`);
+        setCopied(true);
+
+        setTimeout(() => {
+            setCopied(false);
+        }, 1000); // Hide the popup after 1 second
+    };
 
     return (
         <div className="box-share">
@@ -25,6 +34,12 @@ const BoxShare = ({ code }) => {
                     </button>
                 </li>
             </ul>
+
+            {copied && (
+                <div className="copy-popup">
+                    <p>Copied!</p>
+                </div>
+            )}
         </div>
     );
 };

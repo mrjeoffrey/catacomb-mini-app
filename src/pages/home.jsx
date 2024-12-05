@@ -16,8 +16,8 @@ import { useParams } from 'react-router-dom';
 
 const Home = ({refetch}) => {
     const { isTimerFinished } = useContext(TimerContext);
-    const { referred_by } = useParams();
-    console.log(referred_by, "__________")
+    const params = useParams();
+    console.log(params, "__________")
     
     return (
         <Section isTimerFinished={isTimerFinished}>

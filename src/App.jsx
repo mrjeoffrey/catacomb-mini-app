@@ -71,14 +71,14 @@ function App() {
     }, []);
 
     console.log(window.Telegram.WebApp.initDataUnsafe.start_param, "start_param");
-    const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id);
+    // const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id);
 
     return (
-            userInfo?
-            <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds}>
+            // userInfo?
+            // <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds}>
                 <BrowserRouter>
-                    {loading?<LoadingPanel/>:
-                    <Layout userInfo={userInfo}>
+                    {/* {loading?<LoadingPanel/>: */}
+                    {/* // <Layout userInfo={userInfo}> */}
                        Reffered By {window.Telegram.WebApp?.initDataUnsafe?.start_param}
                     <Routes>
                         <Route path="/" element={<Home refetch={refetch}/>} />
@@ -87,10 +87,11 @@ function App() {
                         <Route path="/quests" element={<Quests />} />
                         <Route path="/my-tribe" element={<MyTribe />} />
                     </Routes>
-                    </Layout>
-}
+                    {/* // </Layout> */}
+{/* } */}
                 </BrowserRouter>
-            </TimerProvider>:<LoadingPanel/>
+            // </TimerProvider>
+            // :<LoadingPanel/>
     );
 }
 

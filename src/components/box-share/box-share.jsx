@@ -1,12 +1,17 @@
 import { useState } from 'react';
 
-const BoxShare = ({ code, userInfo }) => {
+const BoxShare = ({ userInfo }) => {
     const [copied, setCopied] = useState(false);
 
     const referralLink = `https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`;
 
+    const shareOnTelegram = () => {
+        const shareLink = `https://t.me/share/url?url=${encodeURIComponent(referralLink)}`;
+        window.open(shareLink, '_blank');
+    };
+
     const copyToClipboard = () => {
-        // Fallback for manual copy when Clipboard API is not available
+        // Fallback for manual copy
         setCopied(true);
         setTimeout(() => setCopied(false), 1000);
     };
@@ -22,22 +27,17 @@ const BoxShare = ({ code, userInfo }) => {
 
             <ul>
                 <li>
-                    <button>
-                        <img src="/images/svg/ico-share.svg" width="30" height="30" alt="" />
+                    <button onClick={shareOnTelegram}>
+                        <img src="/images/svg/ico-share.svg" width="30" height="30" alt="Share on Telegram" />
                     </button>
                 </li>
 
                 <li>
                     <button onClick={copyToClipboard}>
-                        <img src="/images/svg/ico-copy.svg" width="26" height="30" alt="" />
+                        <img src="/images/svg/ico-copy.svg" width="26" height="30" alt="Copy to clipboard" />
                     </button>
                 </li>
             </ul>
-
-            <div>
-                <p>Referral link: <strong>{referralLink}</strong></p>
-                <p>Tap or select the link to copy it manually.</p>
-            </div>
 
             {copied && (
                 <div className="copy-popup">

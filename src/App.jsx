@@ -70,9 +70,9 @@ function App() {
     //     handleUserCheck();
     // }, []);
 
-    const [searchParams] = useSearchParams();
-  const referredBy = searchParams.get('referred_by')
-    console.log(referredBy, window.Telegram.WebApp.initDataUnsafe.start_param, "start_param");
+//     const [searchParams] = useSearchParams();
+//   const referredBy = searchParams.get('referred_by')
+    console.log(window.Telegram.WebApp.initDataUnsafe.start_param, "start_param");
     // const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id);
 
     return (

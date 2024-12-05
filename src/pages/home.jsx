@@ -12,9 +12,12 @@ import Shell from '@/components/shell/shell';
 import Timer from '@/components/timer/timer';
 import Progress from '@/components/progress/progress';
 import Chest from '@/components/chest/chest';
+import { useParams } from 'react-router-dom';
 
 const Home = ({refetch}) => {
     const { isTimerFinished } = useContext(TimerContext);
+    const { referred_by } = useParams();
+    console.log(referred_by, "__________")
     
     return (
         <Section isTimerFinished={isTimerFinished}>

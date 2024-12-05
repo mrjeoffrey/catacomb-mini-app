@@ -26,7 +26,6 @@ function App() {
         const handleUserCheck = async () => {
             if (window.Telegram?.WebApp) {
                 const user = window.Telegram.WebApp.initDataUnsafe?.user;
-                console.log('User Checking...')
                 if (user) {
                     try {
                         // Check if user exists in the database
@@ -82,6 +81,7 @@ function App() {
                     <Layout userInfo={userInfo}>
                     <Routes>
                         <Route path="/" element={<Home refetch={refetch}/>} />
+                        <Route path="/referred_by/:referred_by" element={<Home refetch={refetch}/>} />
                         <Route path="/leaderboard" element={<Leaderboard />} />
                         <Route path="/quests" element={<Quests />} />
                         <Route path="/my-tribe" element={<MyTribe />} />

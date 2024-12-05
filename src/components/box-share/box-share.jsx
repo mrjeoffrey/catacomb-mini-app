@@ -3,32 +3,12 @@ import { useState } from 'react';
 const BoxShare = ({ code, userInfo }) => {
     const [copied, setCopied] = useState(false);
 
-    const copyToClipboard = () => {
-        const referralLink = `https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`;
+    const referralLink = `https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`;
 
-        if (navigator.clipboard) {
-            // Modern Clipboard API
-            navigator.clipboard.writeText(referralLink)
-                .then(() => {
-                    setCopied(true);
-                    setTimeout(() => setCopied(false), 1000);
-                })
-                .catch((error) => console.error('Clipboard write failed:', error));
-        } else {
-            // Fallback for environments where Clipboard API is not allowed
-            const input = document.createElement('input');
-            input.value = referralLink;
-            document.body.appendChild(input);
-            input.select();
-            try {
-                document.execCommand('copy');
-                setCopied(true);
-                setTimeout(() => setCopied(false), 1000);
-            } catch (error) {
-                console.error('Fallback copy failed:', error);
-            }
-            document.body.removeChild(input);
-        }
+    const copyToClipboard = () => {
+        // Fallback for manual copy when Clipboard API is not available
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1000);
     };
 
     return (
@@ -53,6 +33,11 @@ const BoxShare = ({ code, userInfo }) => {
                     </button>
                 </li>
             </ul>
+
+            <div>
+                <p>Referral link: <strong>{referralLink}</strong></p>
+                <p>Tap or select the link to copy it manually.</p>
+            </div>
 
             {copied && (
                 <div className="copy-popup">

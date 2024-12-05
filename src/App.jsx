@@ -77,7 +77,7 @@ function App() {
             userInfo?
             <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds}>
                 <BrowserRouter>
-                    {loading?<LoadingPanel/>:
+                    {/* {loading?<LoadingPanel/>: */}
                     <Layout userInfo={userInfo}>
                        Reffered {window.Telegram.WebApp?.initDataUnsafe?.start_param}
                     <Routes>
@@ -88,7 +88,7 @@ function App() {
                         <Route path="/my-tribe" element={<MyTribe />} />
                     </Routes>
                     </Layout>
-}
+{/* } */}
                 </BrowserRouter>
             </TimerProvider>:<LoadingPanel/>
     );

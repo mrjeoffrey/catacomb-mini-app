@@ -82,7 +82,6 @@ function App() {
                        Reffered {window.Telegram.WebApp?.initDataUnsafe?.start_param}
                     <Routes>
                         <Route path="/" element={<Home refetch={refetch}/>} />
-                        <Route path="/referred_by/:referred_by" element={<Home refetch={refetch}/>} />
                         <Route path="/leaderboard" element={<Leaderboard />} />
                         <Route path="/quests" element={<Quests />} />
                         <Route path="/my-tribe" element={<MyTribe />} />

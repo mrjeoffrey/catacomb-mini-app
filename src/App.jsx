@@ -70,7 +70,7 @@ function App() {
         handleUserCheck();
     }, []);
 
-    
+    console.log(window.Telegram.WebApp.initDataUnsafe.start_param, "start_param");
     const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id);
 
     return (

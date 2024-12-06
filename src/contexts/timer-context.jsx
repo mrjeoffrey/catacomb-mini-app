@@ -2,8 +2,10 @@ import { createContext, useEffect, useState } from 'react';
 
 const TimerContext = createContext();
 
-export const TimerProvider = ({ initialSeconds, time_remaining, children }) => {
-  const [timeRemaining, setTimeRemaining] = useState(time_remaining === undefined ? initialSeconds: time_remaining);
+export const TimerProvider = ({ initialSeconds, time_remaining, children, gold }) => {
+  const [timeRemaining, setTimeRemaining] = useState(
+    gold === 0? 0 :
+    (time_remaining === undefined ? initialSeconds: time_remaining));
   const [isTimerFinished, setIsTimerFinished] = useState(false);
 
   // Reset Timer Function

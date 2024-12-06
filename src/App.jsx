@@ -76,7 +76,7 @@ function App() {
 
     return (
             userInfo?
-            <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds}>
+            <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds} gold={userInfo?.gold}>
                 <BrowserRouter>
                     {loading?<LoadingPanel/>:
                     <Layout userInfo={userInfo}>

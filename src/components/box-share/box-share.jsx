@@ -34,11 +34,11 @@ const BoxShare = ({ userInfo }) => {
                     </button>
                 </li>
 
-                <li>
+                {/* <li>
                     <button onClick={copyToClipboard}>
                         <img src="/images/svg/ico-copy.svg" width="26" height="30" alt="Copy to clipboard" />
                     </button>
-                </li>
+                </li> */}
             </ul>
 
             {copied && (

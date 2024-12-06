@@ -11,11 +11,13 @@ const BoxShare = ({ userInfo }) => {
     };
 
     const copyToClipboard = () => {
-        // Fallback for manual copy
+        navigator.clipboard.writeText(`https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`);
         setCopied(true);
-        setTimeout(() => setCopied(false), 1000);
-    };
 
+        setTimeout(() => {
+            setCopied(false);
+        }, 1000); // Hide the popup after 1 second
+    };
     return (
         <div className="box-share">
             <div className="box__title">

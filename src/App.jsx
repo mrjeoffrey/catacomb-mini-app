@@ -73,7 +73,7 @@ function App() {
 
     
     const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id)//6430530130)//);
-    console.log(window.Telegram.WebApp.initDataUnsafe.start_param, "refferal")
+
     return (
             userInfo?
             <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds}>

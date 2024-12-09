@@ -73,7 +73,7 @@ function App() {
 
     
     const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id)//6430530130)//);
-
+    console.log(window.Telegram.WebApp, "_++_++_+")
     return (
             userInfo?
             <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds} gold={userInfo?.gold}>

@@ -1,9 +1,8 @@
 /**
  * External dependencies.
  */
+import { useEffect, useState } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { TimerProvider } from '@/contexts/timer-context';
-
 
 /**
  * Internal dependencies.
@@ -12,8 +11,8 @@ import Home from '@/pages/home';
 import Leaderboard from '@/pages/leaderboard';
 import Quests from '@/pages/quests';
 import MyTribe from '@/pages/my-tribe';
+import { TimerProvider } from '@/contexts/timer-context';
 import Layout from '@/components/layout/layout';
-import { useEffect, useState } from 'react';
 import axiosInstance from './api/axiosInstance';
 import { useUserInfo } from './queries/useUserInfo';
 import { LoadingPanel } from '@/components/loading/loading';
@@ -70,8 +69,8 @@ function App() {
                       const newUserResponse = await axiosInstance.post('/user', {
                         telegram_id: user.id,
                         username: user.username || user.first_name,
-                        wallet_address: null, // Optional logic for wallet address
-                        IP_address: ipAddress || 'Unknown IP', // Use fetched IP or fallback
+                        wallet_address: null,
+                        IP_address: ipAddress || 'Unknown IP',
                         referral_code: window.Telegram.WebApp.initDataUnsafe?.start_param || null,
                         location: locationString
                       });

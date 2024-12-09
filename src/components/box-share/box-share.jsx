@@ -23,7 +23,7 @@ const BoxShare = ({ userInfo }) => {
             <div className="box__title">
                 <h6>
                     Invite your friends
-                    <span className="text-xs text-medium">You have 234 friends in your tribe</span>
+                    <span className="text-xs text-medium">You have {userInfo?.valid_referrals?.length} friends in your tribe</span>
                 </h6>
             </div>
 

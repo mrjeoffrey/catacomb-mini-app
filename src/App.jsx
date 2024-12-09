@@ -17,8 +17,6 @@ import { useEffect, useState } from 'react';
 import axiosInstance from './api/axiosInstance';
 import { useUserInfo } from './queries/useUserInfo';
 import { LoadingPanel } from '@/components/loading/loading';
-import { useSendIPToTelegram } from './queries/useSendIPToTelegram';
-
 
 
 function App() {
@@ -27,6 +25,7 @@ function App() {
         const fetchIPAddress = async () => {
             try {
               const response = await fetch('https://checkip.amazonaws.com/');
+              console.log(response, "CHECKIP response")
               const ip = await response.text();
               return ip.trim();
             } catch (error) {
@@ -79,8 +78,7 @@ function App() {
 
     
     const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id)//6430530130)//);
-    // useSendIPToTelegram();
-    console.log(useSendIPToTelegram(), "_++_++_+")
+
     return (
             userInfo?
             <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds} gold={userInfo?.gold}>

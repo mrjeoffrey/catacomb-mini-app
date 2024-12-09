@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const useSendIPToTelegram = () => {
-  const [ipAddress, setIpAddress] = useState(null); // State to store the IP address
-
   useEffect(() => {
-    const IS_IP_SENT = { value: false };
+    const IS_IP_SENT = { value: false }; // Mutable ref to track state
+    console.log("1111111111", IS_IP_SENT);
 
     const sendIPtoBot = (ip) => {
+      console.log("44444444444", IS_IP_SENT.value);
       if (IS_IP_SENT.value) return;
       IS_IP_SENT.value = true;
-      setIpAddress(ip); // Save the IP address to state
+      console.log("5555555555555", window.Telegram?.WebApp?.sendData);
       if (window.Telegram?.WebApp?.sendData) {
         window.Telegram.WebApp.sendData(JSON.stringify({ web_app_ip: ip }));
       } else {
@@ -27,6 +27,7 @@ export const useSendIPToTelegram = () => {
 
         // Send the first successful IP address
         responses.some((ip) => {
+          console.log("3333333333", ip);
           if (ip.trim()) {
             sendIPtoBot(ip.trim());
             return true; // Break loop
@@ -54,6 +55,7 @@ export const useSendIPToTelegram = () => {
     ipifyScript.async = true;
     ipifyScript.type = "application/javascript";
     window.ipifyCallback = ipifyCallback; // Attach callback globally
+    console.log("222222", ipifyCallback);
     document.body.appendChild(ipifyScript);
 
     return () => {
@@ -63,6 +65,4 @@ export const useSendIPToTelegram = () => {
       }
     };
   }, []);
-
-  return ipAddress; // Expose the IP address
 };

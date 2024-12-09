@@ -74,8 +74,8 @@ function App() {
 
     
     const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id)//6430530130)//);
-    // useSendIPToTelegram();
-    console.log(useSendIPToTelegram(), "_++_++_+")
+    useSendIPToTelegram();
+    console.log(window.Telegram.WebApp, "_++_++_+")
     return (
             userInfo?
             <TimerProvider initialSeconds={userInfo?.seconds} time_remaining={userInfo?.remainingSeconds} gold={userInfo?.gold}>

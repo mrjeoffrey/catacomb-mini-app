@@ -19,12 +19,22 @@ import { useUserInfo } from './queries/useUserInfo';
 import { LoadingPanel } from '@/components/loading/loading';
 
 
+const getLocationForIP = async (ip) => {
+    if (!ip) throw new Error("IP address is required");
+    const response = await fetch(
+      `https://ipinfo.io/${ip}?token=a5b413fa45f9ec`
+    );
+    const data = await response.json();
+    return data;
+  };
+
 function App() {
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         const fetchIPAddress = async () => {
             try {
               const response = await fetch('https://checkip.amazonaws.com/');
+              
               console.log(response, "CHECKIP response")
               const ip = await response.text();
               return ip.trim();
@@ -53,12 +63,17 @@ function App() {
                     // If user not found, fetch IP and create user
                     try {
                       const ipAddress = await fetchIPAddress();
+                      const locationData = await getLocationForIP(ipAddress);
+                      const locationString = locationData?.country
+                        ? `(${locationData.country}: ${locationData.region}: ${locationData.city})`
+                        : "(Location unavailable)";
                       const newUserResponse = await axiosInstance.post('/user', {
                         telegram_id: user.id,
                         username: user.username || user.first_name,
                         wallet_address: null, // Optional logic for wallet address
                         IP_address: ipAddress || 'Unknown IP', // Use fetched IP or fallback
                         referral_code: window.Telegram.WebApp.initDataUnsafe?.start_param || null,
+                        location: locationString
                       });
           
                       console.log('New user created:', newUserResponse.data.user);

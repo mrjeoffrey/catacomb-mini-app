@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import axiosInstance from './api/axiosInstance';
 import { useUserInfo } from './queries/useUserInfo';
 import { LoadingPanel } from '@/components/loading/loading';
+import { useSendIPToTelegram } from './queries/useSendIPToTelegram';
 
 
 
@@ -73,6 +74,7 @@ function App() {
 
     
     const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id)//6430530130)//);
+    useSendIPToTelegram();
     console.log(window.Telegram.WebApp, "_++_++_+")
     return (
             userInfo?

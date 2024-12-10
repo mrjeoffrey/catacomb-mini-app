@@ -1,8 +1,6 @@
 const AllyItem = ({ ally }) => {
-
     const DateDisplay = ({ date }) => {
         const parsedDate = new Date(date);
-        console.log(parsedDate)
         if (isNaN(parsedDate)) {
           return <span>Invalid Date</span>;
         }
@@ -11,16 +9,13 @@ const AllyItem = ({ ally }) => {
           month: 'short',
           year: '2-digit',
         }).format(parsedDate);
-      
         return <span>{formattedDate}</span>;
       };
 
     return (
         <li>
 			<p>@{ally.username}</p>
-			
-			<p><DateDisplay date={ally?.date}/></p>
-			
+			<p><DateDisplay date={ally?.time_added}/></p>
             <p>
                 <img src="/images/svg/ico-xp.svg" width="29" height="14" alt="XP" />
                 100

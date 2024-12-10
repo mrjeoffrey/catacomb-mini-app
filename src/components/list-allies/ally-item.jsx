@@ -1,13 +1,24 @@
 const AllyItem = ({ ally }) => {
+
+    const DateDisplay = ({ date }) => {
+        const formattedDate = new Intl.DateTimeFormat('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: '2-digit',
+        }).format(new Date(date));
+      
+        return <span>{formattedDate}</span>;
+      };
+
     return (
         <li>
 			<p>@{ally.username}</p>
 			
-			<p>{ally.date}</p>
+			<p><DateDisplay date={ally?.date}/></p>
 			
             <p>
                 <img src="/images/svg/ico-xp.svg" width="29" height="14" alt="XP" />
-                {ally.xp}
+                100
             </p>
         </li>
     );

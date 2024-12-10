@@ -10,14 +10,14 @@ const BoxShare = ({ userInfo }) => {
         window.open(shareLink, '_blank');
     };
 
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(`https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`);
-        setCopied(true);
+    // const copyToClipboard = () => {
+    //     navigator.clipboard.writeText(`https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`);
+    //     setCopied(true);
 
-        setTimeout(() => {
-            setCopied(false);
-        }, 1000); // Hide the popup after 1 second
-    };
+    //     setTimeout(() => {
+    //         setCopied(false);
+    //     }, 1000);
+    // };
     return (
         <div className="box-share">
             <div className="box__title">

@@ -25,9 +25,7 @@ const Home = ({refetch}) => {
 
                 <Section.Content>
                     <Chest refetch={refetch} />
-
                     <Progress />
-
                     <Timer />
                 </Section.Content>
             </Shell>

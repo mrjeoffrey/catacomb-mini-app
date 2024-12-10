@@ -11,7 +11,7 @@ const Layout = (data) => {
         <Wrapper>
             <Header userInfo={data?.userInfo}/>
                 {data?.children}
-            <Footer />
+            <Footer userInfo={data?.userInfo}/>
         </Wrapper>
     );
 };

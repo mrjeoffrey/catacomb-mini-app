@@ -3,7 +3,7 @@
  */
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = ({userInfo}) => {
     const location = useLocation();
     const currentPath = location.pathname;
     const showLinkOnPaths = ['/'];
@@ -19,7 +19,7 @@ const Nav = () => {
 
                         <p className="text-semibold">
                             My Tribe
-                            <span className="text-gray-100 text-xxs">23 teamates</span>
+                            <span className="text-gray-100 text-xxs">{userInfo?.valid_referrals?.length} teamates</span>
                         </p>
                     </NavLink>
                 </li>

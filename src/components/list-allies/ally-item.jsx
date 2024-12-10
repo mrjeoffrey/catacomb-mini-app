@@ -1,11 +1,16 @@
 const AllyItem = ({ ally }) => {
 
     const DateDisplay = ({ date }) => {
+        const parsedDate = new Date(date);
+        console.log(parsedDate)
+        if (isNaN(parsedDate)) {
+          return <span>Invalid Date</span>;
+        }
         const formattedDate = new Intl.DateTimeFormat('en-GB', {
           day: '2-digit',
           month: 'short',
           year: '2-digit',
-        }).format(new Date(date));
+        }).format(parsedDate);
       
         return <span>{formattedDate}</span>;
       };

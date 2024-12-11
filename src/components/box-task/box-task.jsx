@@ -25,7 +25,7 @@ const BoxTask = ({ title, iconSrc }) => {
             onClick={handleTaskClick}
         >
             <figure className="box__image">
-                <img src={iconSrc} width="40" height="40" alt="" />
+                <img src={iconSrc?iconSrc:null} width="40" height="40" alt="" />
             </figure>
 
             <div className="box__content">

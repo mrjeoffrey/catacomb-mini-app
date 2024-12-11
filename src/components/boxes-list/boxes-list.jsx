@@ -3,7 +3,7 @@
  */
 import BoxTask from '@/components/box-task/box-task';
 
-const BoxesList = ({ items }) => {
+const BoxesList = (items) => {
 	return (
 		<div className="boxes-list">
 			{items?.map((item) => (

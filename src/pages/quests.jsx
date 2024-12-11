@@ -17,7 +17,7 @@ const Leaderboard = () => {
     console.log(tasks, "============")
     return (
         <SectionMain title="QueStS" entry="Complete tasks to earn more gold">
-            {!isFetched?
+            {isFetched?
             <BoxesList items={tasks} />:<LoadingPanel/>}
         </SectionMain>
     );

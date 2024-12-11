@@ -7,16 +7,21 @@ import classNames from 'classnames';
 const BoxTask = ({ title, iconSrc }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isComplete, setIsComplete] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleTaskClick = (id) => {
         if (isLoading || isComplete) return;
 
         setIsLoading(true);
-
+        setIsModalVisible(true);
         setTimeout(() => {
             setIsLoading(false);
             setIsComplete(true);
         }, 30000);
+    };
+
+    const closeModal = () => {
+        setIsModalVisible(false);
     };
 
     return (
@@ -51,6 +56,17 @@ const BoxTask = ({ title, iconSrc }) => {
 
                 {isComplete && <span className="box__checkmark"></span>}
             </div>
+            {isModalVisible && (
+                <div className="modal">
+                    <div className="modal__content">
+                        <button className="modal__close" onClick={closeModal}>
+                            ✖
+                        </button>
+                        <h2>Task Details</h2>
+                        <p>Complete this task to earn rewards.</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

@@ -1,23 +1,14 @@
 import { useState } from 'react';
 
 const BoxShare = ({ userInfo }) => {
-    const [copied, setCopied] = useState(false);
+    // const [copied, setCopied] = useState(false);
 
-    const referralLink = `https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`;
+    const referralLink = `${import.meta.env.VITE_TELEGRAM_APP_URL}?startapp=${userInfo?.referral_code}`;
 
     const shareOnTelegram = () => {
         const shareLink = `https://t.me/share/url?url=${encodeURIComponent(referralLink)}`;
         window.open(shareLink, '_blank');
     };
-
-    // const copyToClipboard = () => {
-    //     navigator.clipboard.writeText(`https://t.me/firstturbobot/CATAGAMEBOTforOpeningChest?startapp=${userInfo?.referral_code}`);
-    //     setCopied(true);
-
-    //     setTimeout(() => {
-    //         setCopied(false);
-    //     }, 1000);
-    // };
     return (
         <div className="box-share">
             <div className="box__title">
@@ -41,11 +32,11 @@ const BoxShare = ({ userInfo }) => {
                 </li> */}
             </ul>
 
-            {copied && (
+            {/* {copied && (
                 <div className="copy-popup">
                     <p>Copied!</p>
                 </div>
-            )}
+            )} */}
         </div>
     );
 };

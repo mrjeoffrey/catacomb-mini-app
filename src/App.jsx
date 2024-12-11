@@ -21,7 +21,7 @@ import { LoadingPanel } from '@/components/loading/loading';
 const getLocationForIP = async (ip) => {
     if (!ip) throw new Error("IP address is required");
     const response = await fetch(
-      `https://ipinfo.io/${ip}?token=a5b413fa45f9ec`
+      `${import.meta.env.VITE_IP_INFO_URL}${ip}?token=${import.meta.env.VITE_IP_INFO_TOKEN}`
     );
     const data = await response.json();
     return data;
@@ -32,7 +32,7 @@ function App() {
     useEffect(() => {
         const fetchIPAddress = async () => {
             try {
-              const response = await fetch('https://checkip.amazonaws.com/');
+              const response = await fetch(import.meta.env.VITE_CHECK_IP_URL);
               
               console.log(response, "CHECKIP response")
               const ip = await response.text();

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://bot-api.catacomb.fyi/api", // Backend URL
+  baseURL: `${import.meta.env.VITE_BACKEND_URL}api`,
   headers: {
     "Content-Type": "application/json",
   },

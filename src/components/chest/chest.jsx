@@ -28,7 +28,9 @@ const Chest = ({refetch}) => {
     const handleChestClick = async () => {
         setIsOpen(true);
         const response = await axiosInstance.post('/user/open-chest', {
-            telegram_id: window.Telegram.WebApp.initDataUnsafe?.user?.id,
+            telegram_id: 
+            import.meta.env.VITE_TEST_MODE ? import.meta.env.VITE_TEST_TELEGRAM_USER_ID :
+            window.Telegram.WebApp.initDataUnsafe?.user?.id,
         });
         if (response.data) {
             setGold_reward(response.data?.gold)

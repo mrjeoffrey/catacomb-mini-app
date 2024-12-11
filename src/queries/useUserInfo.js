@@ -14,10 +14,6 @@ export const useUserInfo = (telegramId) => {
     queryKey: ["userInfo", telegramId],
     queryFn: async () => {
       if (telegramId) {
-        console.log(
-          telegramId,
-          "window.Telegram.WebApp.initDataUnsafe?.user?.id"
-        );
         const response = await fetchUserInfo(telegramId);
         return response;
       }

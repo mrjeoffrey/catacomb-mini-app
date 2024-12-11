@@ -3,13 +3,13 @@ import BoxesList from '@/components/boxes-list/boxes-list';
 import { LoadingPanel } from '@/components/loading/loading';
 import { useGetTasks } from '../queries/useTasks';
 
-const Leaderboard = () => {
+const Leaderboard = ({userInfo}) => {
     const { data: tasks, isLoading } = useGetTasks();
 
     return (
         <SectionMain title="QueStS" entry="Complete tasks to earn more gold">
             {!isLoading?
-            <BoxesList items={tasks} />:<LoadingPanel/>}
+            <BoxesList items={tasks} userInfo={userInfo}/>:<LoadingPanel/>}
         </SectionMain>
     );
 };

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "@/api/axiosInstance";
 
-const getTasks = () => axiosInstance.get("/tasks", null);
+const getTasks = () => axiosInstance.get("/tasks");
 
 export const useGetTasks = () => {
   return useQuery({

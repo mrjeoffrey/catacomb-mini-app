@@ -3,6 +3,7 @@
  */
 import SectionMain from '@/components/section-main/section-main';
 import BoxesList from '@/components/boxes-list/boxes-list';
+import { LoadingPanel } from '@/components/loading/loading';
 import { useGetTasks } from '../queries/useTasks';
 
 const Leaderboard = () => {
@@ -12,11 +13,12 @@ const Leaderboard = () => {
     //     { id: 3, title: 'Follow our X page', iconSrc: '/images/svg/x.svg' },
     //     { id: 4, title: 'Follow our Instagram', iconSrc: '/images/svg/instagram.svg' },
     // ];
-    const { data: tasks } = useGetTasks();
+    const { data: tasks, isFetched } = useGetTasks();
     console.log(tasks, "============")
     return (
-        <SectionMain title="QueStS" entry="Complete tasks to earn more gold">    
-            <BoxesList items={tasks} />
+        <SectionMain title="QueStS" entry="Complete tasks to earn more gold">
+            {!isFetched?
+            <BoxesList items={tasks} />:<LoadingPanel/>}
         </SectionMain>
     );
 };

@@ -4,7 +4,6 @@
 import BoxTask from '@/components/box-task/box-task';
 
 const BoxesList = ({items}) => {
-	console.log(items, "__________-")
 	return (
 		<div className="boxes-list">
 			{items?.map((item) => (

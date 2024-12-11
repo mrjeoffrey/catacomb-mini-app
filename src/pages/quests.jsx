@@ -14,11 +14,10 @@ const Leaderboard = () => {
     //     { id: 4, title: 'Follow our Instagram', iconSrc: '/images/svg/instagram.svg' },
     // ];
     const { data: tasks, isLoading } = useGetTasks();
-    console.log(tasks, "============")
+
     return (
         <SectionMain title="QueStS" entry="Complete tasks to earn more gold">
-            {!isLoading?
-            <BoxesList items={tasks} />:<LoadingPanel/>}
+         <LoadingPanel/>
         </SectionMain>
     );
 };

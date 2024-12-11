@@ -13,11 +13,11 @@ const Leaderboard = () => {
     //     { id: 3, title: 'Follow our X page', iconSrc: '/images/svg/x.svg' },
     //     { id: 4, title: 'Follow our Instagram', iconSrc: '/images/svg/instagram.svg' },
     // ];
-    const { data: tasks, isFetched } = useGetTasks();
+    const { data: tasks, isLoading } = useGetTasks();
     console.log(tasks, "============")
     return (
         <SectionMain title="QueStS" entry="Complete tasks to earn more gold">
-            {isFetched?
+            {!isLoading?
             <BoxesList items={tasks} />:<LoadingPanel/>}
         </SectionMain>
     );

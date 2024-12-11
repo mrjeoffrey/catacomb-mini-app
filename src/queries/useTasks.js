@@ -8,7 +8,7 @@ export const useGetTasks = () => {
     queryKey: ["tasks"],
     queryFn: async () => {
       const response = await getTasks();
-      return response;
+      return response?.data;
     },
     refetchOnWindowFocus: false,
     staleTime: 5000,

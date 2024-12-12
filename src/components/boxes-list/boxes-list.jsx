@@ -8,7 +8,7 @@ const BoxesList = ({items, userInfo, refetch}) => {
 		<div className="boxes-list">
 			{items?.map((item) => (
 				<BoxTask
-				refetch={refetch}
+					refetch={refetch}
 					key={item._id}
 					item={item}
 					userInfo={userInfo}

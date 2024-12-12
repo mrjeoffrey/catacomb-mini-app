@@ -6,10 +6,7 @@ import classNames from 'classnames';
 import SubmitImage from './SubmitImage';
 import axiosInstance from '../../api/axiosInstance';
 
-const getTaskValidationStatus = (tasks, taskId) => {
-    const task = tasks.find((t) => t.task_id === taskId);
-    return task?.validation_status ? task?.validation_status : null;
-  };
+
 
 const BoxTask = ({ item, userInfo, refetch }) => {
     const {
@@ -26,8 +23,10 @@ const BoxTask = ({ item, userInfo, refetch }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [image, setImage] = useState(null)
 
-    const validationStatus = getTaskValidationStatus(userInfo?.task_done, _id);
-    
+    const validationStatus = userInfo?.task_done.find((t) => t.task_id === _id)?.validation_status ?
+        userInfo?.task_done.find((t) => t.task_id === _id)?.validation_status :
+        null;
+
     const handleTaskClick = (id) => {
         // if (isLoading || isComplete) return;
 
@@ -42,7 +41,7 @@ const BoxTask = ({ item, userInfo, refetch }) => {
     const closeModal = () => {
         event.stopPropagation();
         setIsModalVisible(false);
-        
+
     };
 
     return (
@@ -72,7 +71,7 @@ const BoxTask = ({ item, userInfo, refetch }) => {
             </div>
 
             <div className="box__loader">
-                {(validationStatus=== "checked" || validationStatus=== "unchecked") && (
+                {(validationStatus === "checked" || validationStatus === "unchecked") && (
                     <img className="box__loader-icon" src="/images/svg/ico-loader.svg" width="28" height="28" alt="" />
                 )}
 
@@ -129,14 +128,14 @@ const BoxTask = ({ item, userInfo, refetch }) => {
                                     if (image) {
                                         formData.append("image", image);
                                     }
-                        
+
                                     const response = await axiosInstance.post('/tasks/proof-task', formData)
-                                    if(response?.status === 200) {
+                                    if (response?.status === 200) {
                                         setImage(null)
                                         setIsModalVisible(false)
                                         refetch();
                                     }
-                                }}/>
+                                }} />
                             </div>
                         </div>
                     </div>

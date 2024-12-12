@@ -8,7 +8,7 @@ import axiosInstance from '../../api/axiosInstance';
 
 const getTaskValidationStatus = (tasks, taskId) => {
     const task = tasks.find((t) => t.task_id === taskId);
-    return task.validation_status ? task.validation_status : null;
+    return task?.validation_status ? task?.validation_status : null;
   };
 
 const BoxTask = ({ item, userInfo }) => {

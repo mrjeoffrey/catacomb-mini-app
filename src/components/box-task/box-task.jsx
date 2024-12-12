@@ -8,7 +8,7 @@ import axiosInstance from '../../api/axiosInstance';
 
 const getTaskValidationStatus = (tasks, taskId) => {
     const task = tasks.find((t) => t.task_id === taskId);
-    return task ? task.validated : null; // Return null if task is not found
+    return task.validation_status ? task.validation_status : null;
   };
 
 const BoxTask = ({ item, userInfo }) => {
@@ -72,11 +72,11 @@ const BoxTask = ({ item, userInfo }) => {
             </div>
 
             <div className="box__loader">
-                {!validationStatus && (
+                {(validationStatus=== "checked" || validationStatus=== "unchecked") && (
                     <img className="box__loader-icon" src="/images/svg/ico-loader.svg" width="28" height="28" alt="" />
                 )}
 
-                {validationStatus && <span className="box__checkmark"></span>}
+                {validationStatus === "validated" && <span className="box__checkmark"></span>}
             </div>
             {isModalVisible && (
                 <div className="modal" onClick={(event) => event.stopPropagation()} >

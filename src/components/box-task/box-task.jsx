@@ -42,7 +42,7 @@ const BoxTask = ({ item, userInfo }) => {
     const closeModal = () => {
         event.stopPropagation();
         setIsModalVisible(false);
-        console.log("____")
+        console.log(userInfo, "____")
     };
 
     return (

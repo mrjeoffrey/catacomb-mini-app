@@ -11,7 +11,7 @@ const getTaskValidationStatus = (tasks, taskId) => {
     return task?.validation_status ? task?.validation_status : null;
   };
 
-const BoxTask = ({ item, userInfo }) => {
+const BoxTask = ({ item, userInfo, refetch }) => {
     const {
         name,
         avatar_url: iconSrc,
@@ -38,11 +38,11 @@ const BoxTask = ({ item, userInfo }) => {
             setIsComplete(true);
         }, 30000);
     };
-
+    console.log(validationStatus, "____", validationStatus === "validated")
     const closeModal = () => {
         event.stopPropagation();
         setIsModalVisible(false);
-        console.log(validationStatus, "____", validationStatus === "validated")
+        
     };
 
     return (
@@ -134,6 +134,7 @@ const BoxTask = ({ item, userInfo }) => {
                                     if(response?.status === 200) {
                                         setImage(null)
                                         setIsModalVisible(false)
+                                        refetch();
                                     }
                                 }}/>
                             </div>

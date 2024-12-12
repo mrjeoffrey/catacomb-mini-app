@@ -23,8 +23,8 @@ const BoxTask = ({ item, userInfo, refetch }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [image, setImage] = useState(null)
 
-    const validationStatus = userInfo?.task_done.find((t) => t.task_id === _id)?.validation_status ?
-        userInfo?.task_done.find((t) => t.task_id === _id)?.validation_status :
+    const validationStatus = userInfo?.task_done?.find((t) => t.task_id === _id)?.validation_status ?
+        userInfo?.task_done?.find((t) => t.task_id === _id)?.validation_status :
         null;
 
     const handleTaskClick = (id) => {
@@ -71,11 +71,9 @@ const BoxTask = ({ item, userInfo, refetch }) => {
             </div>
 
             <div className="box__loader">
-                {(validationStatus === "checked" || validationStatus === "unchecked") && (
+                {validationStatus === "validated" ? <span className="box__checkmark"></span>:(validationStatus === "checked" || validationStatus === "unchecked") ? (
                     <img className="box__loader-icon" src="/images/svg/ico-loader.svg" width="28" height="28" alt="" />
-                )}
-
-                {validationStatus === "validated" && <span className="box__checkmark"></span>}
+                ):null}
             </div>
             {isModalVisible && (
                 <div className="modal" onClick={(event) => event.stopPropagation()} >

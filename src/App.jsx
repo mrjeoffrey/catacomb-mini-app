@@ -103,15 +103,15 @@ function App() {
     };
 
     sendLog('App initialized, starting user check.');
-    handleUserCheck();
+    // handleUserCheck();
   }, []);
   sendLog(`-------starting-----${window.Telegram.WebApp.initDataUnsafe?.user?.id}`);
-  const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id
-  );
+  // const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id
+  // );
 
-  useEffect(() => {
-    sendLog(`Fetched userInfo from useUserInfo: ${JSON.stringify(userInfo)}`);
-  }, [userInfo]);
+  // useEffect(() => {
+  //   sendLog(`Fetched userInfo from useUserInfo: ${JSON.stringify(userInfo)}`);
+  // }, [userInfo]);
   return <>sssss</>
   // return userInfo ? (
   //   <TimerProvider

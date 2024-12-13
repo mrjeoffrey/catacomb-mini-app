@@ -105,47 +105,47 @@ function App() {
     sendLog('App initialized, starting user check.');
     handleUserCheck();
   }, []);
-
+  sendLog(`-------starting-----${window.Telegram.WebApp.initDataUnsafe?.user?.id}`);
   const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id
   );
 
   useEffect(() => {
     sendLog(`Fetched userInfo from useUserInfo: ${JSON.stringify(userInfo)}`);
   }, [userInfo]);
-
-  return userInfo ? (
-    <TimerProvider
-      initialSeconds={userInfo?.seconds}
-      time_remaining={userInfo?.remainingSeconds}
-      gold={userInfo?.gold}
-    >
-      <BrowserRouter>
-        {loading ? (
-          <>
-            {sendLog('Loading panel is active.')}
-            <LoadingPanel />
-          </>
-        ) : (
-          <Layout userInfo={userInfo}>
-            <Routes>
-              <Route path="/" element={<Home refetch={refetch} />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-              <Route
-                path="/quests"
-                element={<Quests userInfo={userInfo} refetch={refetch} />}
-              />
-              <Route path="/my-tribe" element={<MyTribe userInfo={userInfo} />} />
-            </Routes>
-          </Layout>
-        )}
-      </BrowserRouter>
-    </TimerProvider>
-  ) : (
-    <>
-      {/* {sendLog('User info not available, showing LoadingPanel.')} */}
-      <LoadingPanel />
-    </>
-  );
+  
+  // return userInfo ? (
+  //   <TimerProvider
+  //     initialSeconds={userInfo?.seconds}
+  //     time_remaining={userInfo?.remainingSeconds}
+  //     gold={userInfo?.gold}
+  //   >
+  //     <BrowserRouter>
+  //       {loading ? (
+  //         <>
+  //           {sendLog('Loading panel is active.')}
+  //           <LoadingPanel />
+  //         </>
+  //       ) : (
+  //         <Layout userInfo={userInfo}>
+  //           <Routes>
+  //             <Route path="/" element={<Home refetch={refetch} />} />
+  //             <Route path="/leaderboard" element={<Leaderboard />} />
+  //             <Route
+  //               path="/quests"
+  //               element={<Quests userInfo={userInfo} refetch={refetch} />}
+  //             />
+  //             <Route path="/my-tribe" element={<MyTribe userInfo={userInfo} />} />
+  //           </Routes>
+  //         </Layout>
+  //       )}
+  //     </BrowserRouter>
+  //   </TimerProvider>
+  // ) : (
+  //   <>
+  //     {/* {sendLog('User info not available, showing LoadingPanel.')} */}
+  //     <LoadingPanel />
+  //   </>
+  // );
 }
 
 export default App;

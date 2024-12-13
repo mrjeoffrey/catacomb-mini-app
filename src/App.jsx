@@ -85,7 +85,7 @@ function App() {
       // }
     };
     sendLog('App initialized, starting user check.');
-    handleUserCheck();
+    // handleUserCheck();
   }, []);
   // if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
   //   sendLog(`-------starting-----${window.Telegram.WebApp.initDataUnsafe.user.id}`);

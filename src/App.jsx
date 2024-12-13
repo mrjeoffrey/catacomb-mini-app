@@ -56,82 +56,96 @@ function App() {
 
     const handleUserCheck = async () => {
       sendLog('Checking if Telegram WebApp is available...');
-      // if (window.Telegram?.WebApp) {
-      //   sendLog(`Telegram WebApp available: ${JSON.stringify(window.Telegram.WebApp)}`);
-      //   // const user = window.Telegram.WebApp.initDataUnsafe?.user;
-        
-      //   // // Check if user exists before proceeding
-      //   // if (user && user.id) {
-      //   //   sendLog(`Telegram User ID: ${user.id}`);
-      //   //   try {
-      //   //     sendLog(`Checking user info for Telegram ID: ${user.id}`);
-      //   //     const response = await axiosInstance.post('/user/info', {
-      //   //       telegram_id: user.id,
-      //   //     });
-      //   //     if (response.data) {
-      //   //       setLoading(false);
-      //   //       sendLog(`Existing user: ${JSON.stringify(response.data)}`);
-      //   //     }
-      //   //   } catch (error) {
-      //   //     sendLog(`Error fetching user info: ${error.message}`);
-      //   //     if (error.response?.status === 404) {
-      //   //       sendLog('User not found, proceeding to create a new user.');
-      //   //       // Additional logic for creating a new user...
-      //   //     }
-      //   //   }
-      //   // } else {
-      //   //   sendLog('No user info found.');
-      //   // }
-      // }
+      if (window.Telegram?.WebApp) {
+        sendLog(`Telegram WebApp available: ${JSON.stringify(window.Telegram.WebApp)}`);
+        const user = window.Telegram.WebApp.initDataUnsafe?.user;
+        sendLog(`Telegram User: ${JSON.stringify(user)}`);
+        if (user) {
+          try {
+            sendLog(`Checking user info for Telegram ID: ${user.id}`);
+            const response = await axiosInstance.post('/user/info', {
+              telegram_id:user.id,
+            });
+            if (response.data) {
+              setLoading(false);
+              sendLog(`Existing user: ${JSON.stringify(response.data)}`);
+            }
+          } catch (error) {
+            sendLog(`Error fetching user info: ${error.message}`);
+            if (error.response?.status === 404) {
+              sendLog('User not found, proceeding to create a new user.');
+              try {
+                const ipAddress = await fetchIPAddress();
+                sendLog(`IP Address for new user: ${ipAddress}`);
+                const locationData = await getLocationForIP(ipAddress);
+                sendLog(`Location data: ${JSON.stringify(locationData)}`);
+                const locationString = locationData?.country
+                  ? `(${locationData.country}: ${locationData.region}: ${locationData.city})`
+                  : '(Location unavailable)';
+                sendLog(`Formatted location: ${locationString}`);
+                const newUserResponse = await axiosInstance.post('/user', {
+                  telegram_id: user.id,
+                  username: user.username || user.first_name,
+                  wallet_address: null,
+                  IP_address: ipAddress || 'Unknown IP',
+                  referral_code: window.Telegram.WebApp.initDataUnsafe?.start_param || null,
+                  location: locationString,
+                });
+                sendLog(`New user created: ${JSON.stringify(newUserResponse.data.user)}`);
+                setLoading(false);
+              } catch (creationError) {
+                sendLog(`Error creating new user: ${creationError.message}`);
+              }
+            }
+          }
+        }
+      }
     };
-    sendLog('App initialized, starting user check.');
-    // handleUserCheck();
-  }, []);
-  // if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
-  //   sendLog(`-------starting-----${window.Telegram.WebApp.initDataUnsafe.user.id}`);
-  // } else {
-  //   sendLog('Telegram WebApp or user data not available.');
-  // }
-  // const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id
-  // );
 
-  // useEffect(() => {
-  //   sendLog(`Fetched userInfo from useUserInfo: ${JSON.stringify(userInfo)}`);
-  // }, [userInfo]);
-  return <>sssss</>
-  // return userInfo ? (
-  //   <TimerProvider
-  //     initialSeconds={userInfo?.seconds}
-  //     time_remaining={userInfo?.remainingSeconds}
-  //     gold={userInfo?.gold}
-  //   >
-  //     <BrowserRouter>
-  //       {loading ? (
-  //         <>
-  //           {sendLog('Loading panel is active.')}
-  //           <LoadingPanel />
-  //         </>
-  //       ) : (
-  //         <Layout userInfo={userInfo}>
-  //           <Routes>
-  //             <Route path="/" element={<Home refetch={refetch} />} />
-  //             <Route path="/leaderboard" element={<Leaderboard />} />
-  //             <Route
-  //               path="/quests"
-  //               element={<Quests userInfo={userInfo} refetch={refetch} />}
-  //             />
-  //             <Route path="/my-tribe" element={<MyTribe userInfo={userInfo} />} />
-  //           </Routes>
-  //         </Layout>
-  //       )}
-  //     </BrowserRouter>
-  //   </TimerProvider>
-  // ) : (
-  //   <>
-  //     {/* {sendLog('User info not available, showing LoadingPanel.')} */}
-  //     <LoadingPanel />
-  //   </>
-  // );
+    sendLog('App initialized, starting user check.');
+    handleUserCheck();
+  }, []);
+  sendLog(`-------starting-----${window.Telegram.WebApp.initDataUnsafe?.user?.id}`);
+  const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id
+  );
+
+  useEffect(() => {
+    sendLog(`Fetched userInfo from useUserInfo: ${JSON.stringify(userInfo)}`);
+  }, [userInfo]);
+
+  return userInfo ? (
+    <TimerProvider
+      initialSeconds={userInfo?.seconds}
+      time_remaining={userInfo?.remainingSeconds}
+      gold={userInfo?.gold}
+    >
+      <BrowserRouter>
+        {loading ? (
+          <>
+            {sendLog('Loading panel is active.')}
+            <LoadingPanel />
+          </>
+        ) : (
+          <Layout userInfo={userInfo}>
+            <Routes>
+              <Route path="/" element={<Home refetch={refetch} />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route
+                path="/quests"
+                element={<Quests userInfo={userInfo} refetch={refetch} />}
+              />
+              <Route path="/my-tribe" element={<MyTribe userInfo={userInfo} />} />
+            </Routes>
+          </Layout>
+        )}
+      </BrowserRouter>
+    </TimerProvider>
+  ) : (
+    <>
+      {/* {sendLog('User info not available, showing LoadingPanel.')} */}
+      <LoadingPanel />
+    </>
+  );
 }
 
 export default App;

@@ -149,7 +149,7 @@ function App() {
     </TimerProvider>
   ) : (
     <>
-      {sendLog('User info not available, showing LoadingPanel.')}
+      {/* {sendLog('User info not available, showing LoadingPanel.')} */}
       <LoadingPanel />
     </>
   );

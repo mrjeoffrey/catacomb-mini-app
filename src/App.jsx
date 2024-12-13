@@ -58,40 +58,40 @@ function App() {
       sendLog('Checking if Telegram WebApp is available...');
       if (window.Telegram?.WebApp) {
         sendLog(`Telegram WebApp available: ${JSON.stringify(window.Telegram.WebApp)}`);
-        const user = window.Telegram.WebApp.initDataUnsafe?.user;
+        // const user = window.Telegram.WebApp.initDataUnsafe?.user;
         
-        // Check if user exists before proceeding
-        if (user && user.id) {
-          sendLog(`Telegram User ID: ${user.id}`);
-          try {
-            sendLog(`Checking user info for Telegram ID: ${user.id}`);
-            const response = await axiosInstance.post('/user/info', {
-              telegram_id: user.id,
-            });
-            if (response.data) {
-              setLoading(false);
-              sendLog(`Existing user: ${JSON.stringify(response.data)}`);
-            }
-          } catch (error) {
-            sendLog(`Error fetching user info: ${error.message}`);
-            if (error.response?.status === 404) {
-              sendLog('User not found, proceeding to create a new user.');
-              // Additional logic for creating a new user...
-            }
-          }
-        } else {
-          sendLog('No user info found.');
-        }
+        // // Check if user exists before proceeding
+        // if (user && user.id) {
+        //   sendLog(`Telegram User ID: ${user.id}`);
+        //   try {
+        //     sendLog(`Checking user info for Telegram ID: ${user.id}`);
+        //     const response = await axiosInstance.post('/user/info', {
+        //       telegram_id: user.id,
+        //     });
+        //     if (response.data) {
+        //       setLoading(false);
+        //       sendLog(`Existing user: ${JSON.stringify(response.data)}`);
+        //     }
+        //   } catch (error) {
+        //     sendLog(`Error fetching user info: ${error.message}`);
+        //     if (error.response?.status === 404) {
+        //       sendLog('User not found, proceeding to create a new user.');
+        //       // Additional logic for creating a new user...
+        //     }
+        //   }
+        // } else {
+        //   sendLog('No user info found.');
+        // }
       }
     };
     sendLog('App initialized, starting user check.');
     handleUserCheck();
   }, []);
-  if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
-    sendLog(`-------starting-----${window.Telegram.WebApp.initDataUnsafe.user.id}`);
-  } else {
-    sendLog('Telegram WebApp or user data not available.');
-  }
+  // if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
+  //   sendLog(`-------starting-----${window.Telegram.WebApp.initDataUnsafe.user.id}`);
+  // } else {
+  //   sendLog('Telegram WebApp or user data not available.');
+  // }
   // const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id
   // );
 

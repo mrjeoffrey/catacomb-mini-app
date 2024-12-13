@@ -122,7 +122,7 @@ const BoxTask = ({ item, userInfo, refetch }) => {
 
                                     const formData = new FormData();
                                     formData.append("task_id", _id);
-                                    formData.append("telegram_id", import.meta.env.VITE_TEST_MODE ? import.meta.env.VITE_TEST_TELEGRAM_USER_ID : userInfo?.telegram_id);
+                                    formData.append("telegram_id", userInfo?.telegram_id);
                                     if (image) {
                                         formData.append("image", image);
                                     }

@@ -64,9 +64,7 @@ function App() {
           try {
             sendLog(`Checking user info for Telegram ID: ${user.id}`);
             const response = await axiosInstance.post('/user/info', {
-              telegram_id: import.meta.env.VITE_TEST_MODE
-                ? import.meta.env.VITE_TEST_TELEGRAM_USER_ID
-                : user.id,
+              telegram_id:user.id,
             });
             if (response.data) {
               setLoading(false);
@@ -86,9 +84,7 @@ function App() {
                   : '(Location unavailable)';
                 sendLog(`Formatted location: ${locationString}`);
                 const newUserResponse = await axiosInstance.post('/user', {
-                  telegram_id: import.meta.env.VITE_TEST_MODE
-                    ? import.meta.env.VITE_TEST_TELEGRAM_USER_ID
-                    : user.id,
+                  telegram_id: user.id,
                   username: user.username || user.first_name,
                   wallet_address: null,
                   IP_address: ipAddress || 'Unknown IP',
@@ -110,10 +106,7 @@ function App() {
     handleUserCheck();
   }, []);
 
-  const { data: userInfo, refetch } = useUserInfo(
-    import.meta.env.VITE_TEST_MODE
-      ? import.meta.env.VITE_TEST_TELEGRAM_USER_ID
-      : window.Telegram.WebApp.initDataUnsafe?.user?.id
+  const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id
   );
 
   useEffect(() => {

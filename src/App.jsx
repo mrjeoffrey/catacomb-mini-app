@@ -112,7 +112,7 @@ function App() {
   useEffect(() => {
     sendLog(`Fetched userInfo from useUserInfo: ${JSON.stringify(userInfo)}`);
   }, [userInfo]);
-  
+  return <>sssss</>
   // return userInfo ? (
   //   <TimerProvider
   //     initialSeconds={userInfo?.seconds}

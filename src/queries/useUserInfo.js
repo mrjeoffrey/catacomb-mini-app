@@ -18,7 +18,10 @@ export const useUserInfo = (telegramId) => {
         return response;
       }
     },
-    gcTime: 20000,
+    refetchOnWindowFocus: true,
+    staleTime: 5000,
+    gcTime: 10000,
+    refetchInterval: 5000,
     enabled: !!telegramId,
   });
 };

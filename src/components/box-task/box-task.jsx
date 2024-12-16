@@ -15,6 +15,7 @@ const BoxTask = ({ item, userInfo, refetch }) => {
         gold_reward,
         xp_reward,
         link,
+        is_tg_group_joining_check,
         _id
     } = item;
     console.log(item)
@@ -116,14 +117,14 @@ const BoxTask = ({ item, userInfo, refetch }) => {
                             <div className='modal__content_divider' />
                             <span className='modal__submit_desc'>Upload a screenshot with proof that you have completed this task.</span>
                             <div>
-                                <SubmitImage image={image} onChangeImage={
+                                <SubmitImage is_tg_group_joining_check={is_tg_group_joining_check} image={image} onChangeImage={
                                     (img) => { setImage(img) }
                                 } onSubmit={async () => {
 
                                     const formData = new FormData();
                                     formData.append("task_id", _id);
                                     formData.append("telegram_id", userInfo?.telegram_id);
-                                    if (image) {
+                                    if (!is_tg_group_joining_check && image) {
                                         formData.append("image", image);
                                     }
 

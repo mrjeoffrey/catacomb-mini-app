@@ -1,4 +1,4 @@
-const SubmitImage = ({ image, onChangeImage, onSubmit }) => {
+const SubmitImage = ({ image, onChangeImage, onSubmit, is_tg_group_joining_check }) => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -12,6 +12,7 @@ const SubmitImage = ({ image, onChangeImage, onSubmit }) => {
 
   return (
     <div className="submit-image">
+      {!is_tg_group_joining_check?
       <div
         className={image ? "submit-image-container has-image" : "submit-image-container no-image"}
         onClick={() => document.getElementById('file-input').click()}
@@ -43,7 +44,7 @@ const SubmitImage = ({ image, onChangeImage, onSubmit }) => {
           onChange={handleImageChange}
           style={{ display: 'none' }}
         />
-      </div>
+      </div>:null}
       <button className="submit-image-button" onClick={onSubmit}>Submit</button>
     </div>
 

@@ -3,12 +3,10 @@
  */
 import BoxRow from '@/components/box-leaderboard/box-row';
 
-const BoxLeaderboard = ({ players }) => {
-    const sortedPlayers = players.sort((a, b) => a.value - b.value);
-
+const BoxLeaderboard = ({ userInfo }) => {
     return (
         <div className="box-leaderboard">
-            {sortedPlayers?.map((player, index) => (
+            {userInfo?.rankings?.map((player, index) => (
                 <BoxRow
                     key={player.username}
                     player={player}
@@ -16,7 +14,7 @@ const BoxLeaderboard = ({ players }) => {
                 />
             ))}
 
-            <p className="text-xs">Your current rank is #4463 for this season.</p>
+            <p className="text-xs">Your current rank is ${userInfo?.rank} for this season.</p>
         </div>
     );
 };

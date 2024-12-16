@@ -12,12 +12,12 @@ const BoxRow = ({ player, rank }) => (
             <p>
                 {player.username}
 
-                <span className="text-gray-100 text-xxs">{player.xp} XP</span>
+                <span className="text-gray-100 text-xxs">{player.season_xp} XP</span>
             </p>
         </div>
 
         <div className="box__aside">
-            <p className="text-semibold">{player.coins}</p>
+            <p className="text-semibold">{player.season_gold}</p>
 
             <img src="/images/svg/ico-coin.svg" width="22" height="22" alt="" />
         </div>

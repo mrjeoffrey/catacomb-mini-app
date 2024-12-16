@@ -117,7 +117,7 @@ function App() {
           <Layout userInfo={userInfo}>
             <Routes>
               <Route path="/" element={<Home refetch={refetch} />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/leaderboard" element={<Leaderboard userInfo={userInfo}/>} />
               <Route
                 path="/quests"
                 element={<Quests userInfo={userInfo} refetch={refetch} />}

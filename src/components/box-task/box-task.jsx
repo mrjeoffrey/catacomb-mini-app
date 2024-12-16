@@ -113,9 +113,11 @@ const BoxTask = ({ item, userInfo, refetch }) => {
 
                         </div>
                         <div className='modal__submit'>
-                            <p className='modal__submit_title'>Submit your proof</p>
+                            <p className='modal__submit_title'>
+                                {!is_tg_group_joining_check?"Submit your proof":"Did you join our Telegram Group?"}</p>
                             <div className='modal__content_divider' />
-                            <span className='modal__submit_desc'>Upload a screenshot with proof that you have completed this task.</span>
+                            {!is_tg_group_joining_check?(<span className='modal__submit_desc'>
+                                Upload a screenshot with proof that you have completed this task.</span>):null}
                             <div>
                                 <SubmitImage is_tg_group_joining_check={is_tg_group_joining_check} image={image} onChangeImage={
                                     (img) => { setImage(img) }

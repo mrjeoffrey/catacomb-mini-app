@@ -45,7 +45,7 @@ const SubmitImage = ({ image, onChangeImage, onSubmit, is_tg_group_joining_check
           style={{ display: 'none' }}
         />
       </div>:null}
-      <button className="submit-image-button" onClick={onSubmit}>Submit</button>
+      <button className="submit-image-button" onClick={onSubmit}> {!is_tg_group_joining_check?"Submit":"Check Joined"}</button>
     </div>
 
   );

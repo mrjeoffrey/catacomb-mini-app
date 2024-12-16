@@ -25,7 +25,7 @@ const BoxLeaderboard = ({ userInfo }) => {
                 <BoxRow
                     key={player.username}
                     player={player}
-                    rank={getOrdinalSuffix(index + 1)}
+                    rank={index}
                 />
             ))}
 

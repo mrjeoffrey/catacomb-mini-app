@@ -16,6 +16,7 @@ import Layout from '@/components/layout/layout';
 import axiosInstance from './api/axiosInstance';
 import { useUserInfo } from './queries/useUserInfo';
 import { LoadingPanel } from '@/components/loading/loading';
+import { useGetTasks } from './queries/useTasks';
 
 const getLocationForIP = async (ip) => {
   if (!ip) throw new Error('IP address is required');
@@ -96,6 +97,7 @@ function App() {
   }, []);
   const { data: userInfo, refetch } = useUserInfo(window.Telegram.WebApp.initDataUnsafe?.user?.id
   );
+  const { data: tasks, isLoading } = useGetTasks();
 
   useEffect(() => {
 
@@ -110,17 +112,16 @@ function App() {
       <BrowserRouter>
         {loading ? (
           <>
-
             <LoadingPanel />
           </>
         ) : (
-          <Layout userInfo={userInfo}>
+          <Layout userInfo={userInfo} tasks={tasks}>
             <Routes>
               <Route path="/" element={<Home refetch={refetch} />} />
               <Route path="/leaderboard" element={<Leaderboard userInfo={userInfo}/>} />
               <Route
                 path="/quests"
-                element={<Quests userInfo={userInfo} refetch={refetch} />}
+                element={<Quests userInfo={userInfo} refetch={refetch} tasks={tasks} isLoading={isLoading} />}
               />
               <Route path="/my-tribe" element={<MyTribe userInfo={userInfo} />} />
             </Routes>

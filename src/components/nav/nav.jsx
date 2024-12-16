@@ -3,7 +3,7 @@
  */
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
-const Nav = ({userInfo}) => {
+const Nav = ({userInfo, tasks}) => {
     const location = useLocation();
     const currentPath = location.pathname;
     const showLinkOnPaths = ['/'];
@@ -40,7 +40,7 @@ const Nav = ({userInfo}) => {
 
                         <p className="text-semibold">
                             Quests
-                            <span className="text-gray-100 text-xxs">2 available</span>
+                            <span className="text-gray-100 text-xxs">{tasks?.length} available</span>
                         </p>
                     </NavLink>
                 </li>
@@ -53,7 +53,7 @@ const Nav = ({userInfo}) => {
 
                         <p className="text-semibold">
                             Ranks
-                            <span className="text-gray-100 text-xxs">#4567</span>
+                            <span className="text-gray-100 text-xxs">#{userInfo?.rank}</span>
                         </p>
                     </NavLink>
                 </li>

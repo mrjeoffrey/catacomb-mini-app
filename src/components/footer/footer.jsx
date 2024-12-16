@@ -10,7 +10,7 @@ import Shell from '@/components/shell/shell';
 import Box from '@/components/box/box';
 import Nav from '@/components/nav/nav';
 
-const Footer = ({userInfo}) => {
+const Footer = ({userInfo, tasks}) => {
     const location = useLocation();
     const currentPath = location.pathname;
     const showBoxOnPaths = ['/'];
@@ -19,7 +19,7 @@ const Footer = ({userInfo}) => {
         <footer className="footer">
             <Shell>
                 <div className="footer__nav">
-                    <Nav userInfo={userInfo}/>
+                    <Nav userInfo={userInfo} tasks={tasks}/>
                 </div>
 
                 {showBoxOnPaths.includes(currentPath) && (

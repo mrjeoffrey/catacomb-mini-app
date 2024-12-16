@@ -3,6 +3,21 @@
  */
 import BoxRow from '@/components/box-leaderboard/box-row';
 
+const getOrdinalSuffix = (rank) => {
+    const j = rank % 10;
+    const k = rank % 100;
+    if (j === 1 && k !== 11) {
+        return `${rank}st`;
+    }
+    if (j === 2 && k !== 12) {
+        return `${rank}nd`;
+    }
+    if (j === 3 && k !== 13) {
+        return `${rank}rd`;
+    }
+    return `${rank}th`;
+};
+
 const BoxLeaderboard = ({ userInfo }) => {
     return (
         <div className="box-leaderboard">
@@ -10,11 +25,13 @@ const BoxLeaderboard = ({ userInfo }) => {
                 <BoxRow
                     key={player.username}
                     player={player}
-                    rank={index}
+                    rank={getOrdinalSuffix(index + 1)}
                 />
             ))}
 
-            <p className="text-xs">Your current rank is ${userInfo?.rank} for this season.</p>
+            <p className="text-xs">
+                Your current rank is {getOrdinalSuffix(userInfo?.rank)} for this season.
+            </p>
         </div>
     );
 };

@@ -79,9 +79,7 @@ const BoxTask = ({ item, userInfo, refetch }) => {
             {isModalVisible && (
                 <div className="modal" onClick={(event) => event.stopPropagation()} >
                     <div className="modal__content">
-                        <button className="modal__close" onClick={closeModal}>
-                            ✖
-                        </button>
+                        <img src="/images/svg/ico-close.svg" width="43" height="43" alt="" onClick={closeModal} className="modal__close"/>
                         <h2>Complete this task</h2>
                         <div className='modal__content_divider' />
                         <div className='modal__content_box'>

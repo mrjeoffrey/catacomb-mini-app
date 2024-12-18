@@ -120,12 +120,7 @@
     position: absolute;
     top: 10px; /* Add some spacing to avoid it being too close to the edge */
     right: 10px;
-    background: white;
-    color: black;
-    padding: 10px 15px;
-    border-radius: 10px;
-    border: none;
-    font-size: 25px;
+   
     cursor: pointer;
     display: flex; /* Ensures content inside is centered */
     align-items: center; /* Vertical centering */

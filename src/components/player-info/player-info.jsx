@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const PlayerInfo = ({userInfo}) => {
     return (
         <div className="player-info">
@@ -6,9 +8,9 @@ const PlayerInfo = ({userInfo}) => {
 
                 <span className="player__level">LV{userInfo?.level}</span>
 
-                <button className="player__xp">
+                <NavLink to="/quests"  className="player__xp">
                     <img  src="/images/svg/ico-xp.svg" width="45" height="22" alt="" />
-                </button>
+                </NavLink>
             </div>
             <div className="player__content">
 				<p className="text-extrabold">Player

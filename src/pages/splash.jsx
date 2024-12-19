@@ -6,8 +6,8 @@ const SplashPage = ({ onStart }) => {
   return (
     <div className="splash-page">
       <div className="splash-page__social-icons">
-        <img src="/images/svg/ico-telegram.svg" width="30" height="30" />
-        <img src="/images/svg/ico-twitter.svg" width="30" height="30" />
+        <img src="/images/svg/ico-telegram.svg" width="30" height="30" className='icon' />
+        <img src="/images/svg/ico-twitter.svg" width="30" height="30" className='icon' />
       </div>
       <div className="splash-page__content">
         <img src="/images/temp/logosplash.png" alt="App Logo" className="splash-page__logo" />

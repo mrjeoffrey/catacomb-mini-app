@@ -23,6 +23,9 @@
       .icon {
         font-size: 1.5rem;
         cursor: pointer;
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
   
@@ -34,8 +37,6 @@
       margin-top: 100px;
       gap: 20px;
       height: 80%;
-      // overflow-x: visible;
-      // overflow-y: auto;
       max-width: 650px;
       margin-bottom: 20px;
       width: 90%;
@@ -133,11 +134,11 @@
           position: relative;
           color: #1E1E1E;
           cursor: pointer;
+          transition: transform 0.2s;
           .icon {
             font-size: 1.5rem;
           }
           &:hover {
-          
             transform: scale(1.05);
           }
         

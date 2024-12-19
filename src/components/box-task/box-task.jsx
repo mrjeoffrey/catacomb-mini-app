@@ -30,13 +30,14 @@ const BoxTask = ({ item, userInfo, refetch }) => {
 
     const handleTaskClick = (id) => {
         // if (isLoading || isComplete) return;
-
+        if (!["unchecked", "checked", "validated"].includes(validationStatus)) {
         setIsLoading(true);
         setIsModalVisible(true);
         setTimeout(() => {
             setIsLoading(false);
             setIsComplete(true);
         }, 30000);
+    }
     };
     console.log(validationStatus, "____", validationStatus === "validated")
     const closeModal = () => {

@@ -27,7 +27,7 @@ const getLocationForIP = async (ip) => {
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [showSplash, setShowSplash] = useState(true); // State to manage splash visibility
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     const fetchIPAddress = async () => {

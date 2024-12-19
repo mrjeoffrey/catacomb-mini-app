@@ -7,7 +7,7 @@ const Leaderboard = ({userInfo, refetch, tasks, isLoading}) => {
 
     return (
         <SectionMain title="QueStS" entry="Complete tasks to earn more gold">
-            {!isLoading?
+            {!isLoading && tasks?.length > 0?
             <BoxesList items={tasks} userInfo={userInfo} refetch={refetch}/>:<LoadingPanel/>}
         </SectionMain>
     );

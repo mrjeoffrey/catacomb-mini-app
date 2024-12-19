@@ -9,7 +9,7 @@ const SplashPage = ({ onStart }) => {
         <i className="icon icon-twitter"></i>
       </div>
       <div className="splash-page__content">
-        <img src="/logo.png" alt="App Logo" className="splash-page__logo" />
+        <img src="/images/temp/logoheader.png" alt="App Logo" className="splash-page__logo" />
         <p className="splash-page__text">
           To proceed, please <br />
           connect <br />
@@ -23,15 +23,16 @@ const SplashPage = ({ onStart }) => {
       <footer className="splash-page__footer">
         <div className="splash-page__footer-left">
           <div className="splash-page__footer-item" onClick={onStart}>
-            <i className="icon icon-play"></i>
+            <img src="/images/svg/ico-play.svg" width="43" height="43" />
             <span>Play</span>
+            <div className="badge">New</div>
           </div>
           <div className="splash-page__footer-item">
-            <i className="icon icon-buy-sell"></i>
+          <img src="/images/svg/ico-buy-sell.svg" width="43" height="43" />
             <span>Buy/Sell</span>
           </div>
           <div className="splash-page__footer-item">
-            <i className="icon icon-chart"></i>
+          <img src="/images/svg/ico-chart.svg" width="43" height="43" />
             <span>Chart</span>
           </div>
         </div>

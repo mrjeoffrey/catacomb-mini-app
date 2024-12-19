@@ -18,7 +18,6 @@ const BoxTask = ({ item, userInfo, refetch }) => {
         is_tg_group_joining_check,
         _id
     } = item;
-    console.log(item)
     const [isLoading, setIsLoading] = useState(false);
     const [isComplete, setIsComplete] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -39,7 +38,6 @@ const BoxTask = ({ item, userInfo, refetch }) => {
         }, 30000);
     }
     };
-    console.log(validationStatus, "____", validationStatus === "validated")
     const closeModal = () => {
         event.stopPropagation();
         setIsModalVisible(false);

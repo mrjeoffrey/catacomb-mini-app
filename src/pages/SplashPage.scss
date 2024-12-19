@@ -43,14 +43,10 @@
       }
   
       &__button {
-        width: 280px;
-        height: 60px;
-        top: 403px; // Positioning may not work directly in relative containers, adjust as necessary
-        left: 67px; // Same note as above
+        padding: 20px 50px;
         gap: 0px;
-        border-radius: 30px 0px 0px 0px;
+        border-radius: 30px;
         border: 2px solid;
-        opacity: 0; // Assuming this should be a transition effect; you might want to clarify
         background: linear-gradient(147.36deg, #FFD148 19.52%, #FFAF2E 45.92%, #FFCF54 72.31%);
         border-image-source: linear-gradient(360deg, #000000 10%, #55370E 100%);
         box-shadow: 0px 4px 0px 0px #FFFFFF inset, 0px 4px 4px 0px #00000040;
@@ -61,17 +57,17 @@
         text-align: left;
         text-underline-position: from-font;
         text-decoration-skip-ink: none;
-        color: #000; // Assuming a contrasting color for the text; adjust as needed
+        color: #000;
         cursor: pointer;
-        transition: opacity 0.3s, transform 0.2s;
+        transition: transform 0.2s;
       
         &:hover {
-          opacity: 1; // Assuming opacity increases on hover
-          transform: scale(1.05); // Slight scaling effect for interaction
+          
+          transform: scale(1.05);
         }
       
         &:active {
-          transform: scale(0.95); // Press effect
+          transform: scale(0.95);
         }
       }
       

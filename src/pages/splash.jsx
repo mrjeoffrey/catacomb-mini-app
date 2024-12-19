@@ -1,4 +1,3 @@
-import React from 'react';
 import './SplashPage.scss';
 
 const SplashPage = ({ onStart }) => {
@@ -9,7 +8,7 @@ const SplashPage = ({ onStart }) => {
       <img src="/images/svg/ico-twitter.svg" width="30" height="30" />
       </div>
       <div className="splash-page__content">
-        <img src="/images/temp/logoheader.png" alt="App Logo" className="splash-page__logo" />
+        <img src="/images/temp/logosplash.png" alt="App Logo" className="splash-page__logo" />
         <p className="splash-page__text">
           To proceed, please <br />
           connect <br />
@@ -18,10 +17,11 @@ const SplashPage = ({ onStart }) => {
         <button className="splash-page__button-connect" >
           Connect Wallet
         </button>
-        <button className="splash-page__button" >
+        <p className="splash-page__text">or play & win USDT</p>
+        <button className="splash-page__button" onClick={onStart}>
           PLAY NOW
         </button>
-        <p className="splash-page__audit">Audited by Verichains</p>
+       
       </div>
       <footer className="splash-page__footer">
         <div className="splash-page__footer-left">

@@ -1,0 +1,101 @@
+.splash-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background: url('/background-image.jpg') no-repeat center center;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+  
+    &__social-icons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+  
+      .icon {
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+  
+    &__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      text-align: center;
+  
+      &__logo {
+        width: 150px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+  
+      &__text {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+  
+      &__button {
+        background-color: #0077ff;
+        color: white;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 30px;
+        padding: 15px 40px;
+        cursor: pointer;
+        margin-bottom: 20px;
+  
+        &:hover {
+          background-color: #0055cc;
+        }
+      }
+  
+      &__audit {
+        font-size: 0.9rem;
+        color: #555;
+      }
+    }
+  
+    &__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      background-color: #ffbc3e;
+      padding: 10px 20px;
+  
+      &-left {
+        display: flex;
+        gap: 20px;
+  
+        .splash-page__footer-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 0.9rem;
+  
+          .icon {
+            font-size: 1.5rem;
+          }
+  
+          span {
+            margin-top: 5px;
+          }
+        }
+      }
+  
+      &-right {
+        .icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  

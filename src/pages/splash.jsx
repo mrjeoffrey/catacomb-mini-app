@@ -1,8 +1,46 @@
-const SplashPage = ({ onStart }) => (
-    <div className="splash-page">
-      <h1>Welcome to the App!</h1>
-      <button onClick={onStart}>Start</button>
-    </div>
-);
+import React from 'react';
+import './SplashPage.scss';
 
-export default SplashPage
+const SplashPage = ({ onStart }) => {
+  return (
+    <div className="splash-page">
+      <div className="splash-page__social-icons">
+        <i className="icon icon-facebook"></i>
+        <i className="icon icon-twitter"></i>
+      </div>
+      <div className="splash-page__content">
+        <img src="/logo.png" alt="App Logo" className="splash-page__logo" />
+        <p className="splash-page__text">
+          To proceed, please <br />
+          connect <br />
+          your TON wallet.
+        </p>
+        <button className="splash-page__button" >
+          Connect Wallet
+        </button>
+        <p className="splash-page__audit">Audited by Verichains</p>
+      </div>
+      <footer className="splash-page__footer">
+        <div className="splash-page__footer-left">
+          <div className="splash-page__footer-item" onClick={onStart}>
+            <i className="icon icon-play"></i>
+            <span>Play</span>
+          </div>
+          <div className="splash-page__footer-item">
+            <i className="icon icon-buy-sell"></i>
+            <span>Buy/Sell</span>
+          </div>
+          <div className="splash-page__footer-item">
+            <i className="icon icon-chart"></i>
+            <span>Chart</span>
+          </div>
+        </div>
+        <div className="splash-page__footer-right">
+          <i className="icon icon-info"></i>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default SplashPage;
